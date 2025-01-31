@@ -1,8 +1,16 @@
 import React from 'react';
 import FlashPage from './FlashPage';
+import Products from './Products';
 
 const HomePage = () => {
-  return <FlashPage />; // Just rendering the FlashPage component
+  return (<>
+  <FlashPage />;
+  <Products />;
+  </>)
+  
+  
+ 
+
 };
 
 export default HomePage;
