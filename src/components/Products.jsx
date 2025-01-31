@@ -3,8 +3,8 @@ import React from 'react'
 
 const Products = () => {
   return (
-    <Flex className="px-4 py-6 sm:px-8 lg:px-16">
-      <div className='w-[40vw]'>
+    <Flex justify='center' align='center' className="px-4 py-6 ">
+      <div className='w-[30%]'>
         <h1 className="text-4xl text-blue-900 font-bold mb-6 sm:text-5xl md:text-6xl lg:text-7xl">
           Products
         </h1>
@@ -15,8 +15,8 @@ const Products = () => {
         </p>
       </div>
 
-<div className='w-[100%]'>
-      <Row className="mt-6" gutter={[16, 16]}>
+<div className='w-auto'>
+      <Row className="mt-6" gutter={[16, 24]} >
         <Col xs={{ span: 5, offset: 1 }} lg={{ span: 4, offset: 2 }}>
           <Image
             src="/imgs/products1.png"
@@ -82,38 +82,7 @@ const Products = () => {
         </Col>
       </Row>
 
-      <Row className="mt-6" gutter={[16, 16]}>
-        <Col xs={{ span: 5, offset: 1 }} lg={{ span: 4, offset: 2 }}>
-          <Image
-            src="/imgs/products1.png"
-            alt="Product Image"
-            preview={false}
-            width={200}
-            height={200}
-            style={{ objectFit: 'cover' }}
-          />
-        </Col>
-        <Col xs={{ span: 11, offset: 1 }} lg={{ span: 4, offset: 2 }}>
-          <Image
-            src="/imgs/products1.png"
-            alt="Product Image"
-            preview={false}
-            width={200}
-            height={200}
-            style={{ objectFit: 'cover' }}
-          />
-        </Col>
-        <Col xs={{ span: 5, offset: 1 }} lg={{ span: 4, offset: 2 }}>
-          <Image
-            src="/imgs/products1.png"
-            alt="Product Image"
-            preview={false}
-            width={200}
-            height={200}
-            style={{ objectFit: 'cover' }}
-          />
-        </Col>
-      </Row>
+
 
       </div>
     </Flex>
