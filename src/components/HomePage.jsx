@@ -4,6 +4,7 @@ import Products from './Products';
 import ProductsList from './ProductsList';
 import Awards from './Awards';
 import Quailty from './Quailty';
+// import Navbar from './Navbar';
 
 const HomePage = () => {
   return (<>
@@ -12,6 +13,7 @@ const HomePage = () => {
   <ProductsList />
   <Awards />
   <Quailty />
+  {/* <Navbar /> */}
   </>)
   
   
