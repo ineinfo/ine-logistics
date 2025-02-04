@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const FlashPage = () => {
   const [loaded, setLoaded] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
   const [taglineVisible, setTaglineVisible] = useState(false);
-  const [showTextAnimation, setShowTextAnimation] = useState(false); // Controls the text animation
+  const [showTextAnimation, setShowTextAnimation] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,7 +27,6 @@ const FlashPage = () => {
         setTaglineVisible(true);
       }, 1500);
 
-      // Trigger the text animation after the page is loaded
       const textAnimationTimer = setTimeout(() => {
         setShowTextAnimation(true);
       }, 1000);
@@ -42,24 +41,31 @@ const FlashPage = () => {
 
   const taglineVariants = {
     hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, delay: 0.2, ease: "easeInOut" },
+    },
   };
 
   const textVariants = {
-    hidden: { opacity: 0, x: 0 }, // Changed x to 0 to keep text in place
-    visible: { opacity: 1, x: 0, transition: { duration: 1, delay: 0.2 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: i * 0.1, ease: "easeInOut" },
+    }),
   };
 
   return (
     <div
       className={`${
-        loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      } transition-all duration-1000 ease-out bg-cover bg-center bg-fixed min-h-screen`}
+        loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
       style={{
         backgroundImage: 'url("/imgs/home-band.jpg")',
       }}
     >
-      {/* Style for keyframe animation */}
       <style>
         {`
           @keyframes text {
@@ -79,40 +85,47 @@ const FlashPage = () => {
         `}
       </style>
 
-      <div className="flex flex-col items-center justify-center h-full text-center px-4"> {/* Reduced space-y */}
-        <div className="flex flex-col items-center justify-center"> {/* Changed space-y to 2 */}
+      <div className="flex flex-col items-center justify-center h-full text-center px-4">
+        <div className="flex flex-col items-center justify-center space-y-2">
           <motion.img
             src="/imgs/logo.png"
             alt="Logo"
-            className="w-96 h-60 object-cover"
+            className="w-48 h-48 md:w-96 md:h-60 object-cover"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.8 }}
+            animate={{
+              opacity: logoVisible ? 1 : 0,
+              scale: logoVisible ? 1 : 0.8,
+            }}
             transition={{
               duration: 1.5,
-              ease: "easeOut",
+              ease: "easeInOut",
             }}
           />
-          {/* INE INTERNATIONAL text with animation */}
-          <motion.div
-            className="text-blue-900 font-bold text-5xl uppercase md:text-6xl lg:text-7xl animate-[text_4s_1] transition-all" 
-            initial="hidden"
-            animate={showTextAnimation ? "visible" : "hidden"}
-            variants={textVariants}
-          >
-            {'INE INTERNATIONAL'}
-          </motion.div>
+          <div className="text-blue-900 font-bold text-4xl md:text-5xl lg:text-6xl uppercase">
+            {"INE INTERNATIONAL".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                custom={index}
+                initial="hidden"
+                animate={showTextAnimation ? "visible" : "hidden"}
+                variants={textVariants}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </div>
         </div>
 
-        {/* {taglineVisible && (
+        {taglineVisible && (
           <motion.div
-            className="text-2xl font-semibold text-blue-900"
+            className="text-xl md:text-2xl font-semibold text-blue-900 mt-4"
             initial="hidden"
             animate="visible"
             variants={taglineVariants}
           >
             Connecting Global Markets Through Quality Agriculture
           </motion.div>
-        )} */}
+        )}
       </div>
     </div>
   );
