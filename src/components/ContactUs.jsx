@@ -29,13 +29,13 @@ const ContactUs = () => {
   return (
 
     <div className='bg-[#76c9f06b]'>
-    <div className="flex justify-center items-center min-h-screen p-10">
+    <div className="flex justify-center items-center min-h-screen">
       <div className="relative flex flex-row items-center">
         {/* Dark Card (Left Side) */}
         <Card
           style={{
             // position: 'absolute',
-            left: '25%', // Increased space from the left
+            left: '5%', // Increased space from the left
             top: '20%',  // Moved the dark card slightly lower
             width: 320,
             height: 350,
@@ -72,20 +72,20 @@ const ContactUs = () => {
             </div>
           }
           style={{
-            width: 800,
+            width: 650,
             maxHeight:"650px",
             padding: '30px',
             position: 'relative',
             zIndex: 0,
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-            marginLeft: '10%', // Added more space between the left card
+            marginLeft: '-12%', 
           }}
         >
           <Form
             form={form}
             layout="vertical"
             onFinish={handleSubmit}
-            style={{ padding: '10px' , marginLeft: '40%'}}
+            style={{ padding: '10px' , marginLeft: '25%'}}
           >
             <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please enter your name' }]}>
               <Input placeholder="Enter your name" style={{ borderBottom: '2px solid #76c9f0', fontSize: '14px' }} />

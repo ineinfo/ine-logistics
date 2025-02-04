@@ -5,7 +5,7 @@ const About = () => {
     <div>
       {/* First Section - Blue Gradient Background with Text and Image */}
       <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-10">
-        <div className="flex items-center w-full max-w-screen-lg">
+        <div className="flex items-center w-full max-w-screen-lg shadow-2xl">
           {/* Left Side - Text */}
           <div className="text-center flex-1">
             <p className="text-4xl font-bold text-blue-900 mb-4">
@@ -28,7 +28,7 @@ const About = () => {
       </div>
 
       <div className="w-full bg-white">
-        <div className="relative flex justify-center">
+        <div className="relative flex justify-center shadow-2xl">
           <img
             src="/imgs/about_bg.png"
             alt="Second Image"
