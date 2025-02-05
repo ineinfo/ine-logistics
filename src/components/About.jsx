@@ -1,9 +1,12 @@
 import React from 'react';
 import Vision from './Vision';
+import Navbar from './Navbar';
 
 const About = () => {
   return (
     <>
+
+    <Navbar/>
       {/* First Section - Blue Gradient Background with Text and Image */}
       <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-10">
         <div className="flex items-center w-full max-w-screen-lg">

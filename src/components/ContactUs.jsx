@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Modal, Card } from 'antd';
 import { PhoneOutlined, MailOutlined } from '@ant-design/icons';
+import Navbar from './Navbar';
 
 const ContactUs = () => {
   const [form] = Form.useForm();
@@ -27,6 +28,8 @@ const ContactUs = () => {
   };
 
   return (
+    <>
+  <Navbar/>
 
     <div className='bg-[#76c9f06b]'>
     <div className="flex justify-center items-center min-h-screen">
@@ -125,6 +128,8 @@ const ContactUs = () => {
       </div>
     </div>
     </div>
+
+    </>
   );
 };
 
