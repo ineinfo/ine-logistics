@@ -36,7 +36,7 @@ const Navbar = () => {
     <>
       <div
         className={`navbar w-full bg-blue-200 text-gray-800 z-50 shadow-lg transition-all duration-500 ease-in-out p-0 m-0 ${
-          isFixed ? "fixed top-0 left-0 w-full" : ""
+          isFixed ? "fixed top-0 left-0 w-[90vw] sm:w-full" : ""
         }`}
       >
         <Flex align="center">
