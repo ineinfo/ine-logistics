@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar max-w-[100%] bg-blue-200 text-gray-800 z-50 shadow-lg transition-all duration-500 ease-in-out p-0 m-0 ${
+        className={`navbar w-full bg-blue-200 text-gray-800 z-50 shadow-lg transition-all duration-500 ease-in-out p-0 m-0 ${
           isFixed ? "fixed top-0 left-0" : ""
         }`}
       >
