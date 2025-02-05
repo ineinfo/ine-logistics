@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const FlashPage = () => {
@@ -8,6 +8,7 @@ const FlashPage = () => {
   const [logoVisible, setLogoVisible] = useState(false);
   const [taglineVisible, setTaglineVisible] = useState(false);
   const [showTextAnimation, setShowTextAnimation] = useState(false);
+  const flashPageRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,6 +40,22 @@ const FlashPage = () => {
     }
   }, [loaded]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const flashPageHeight =
+        flashPageRef.current.getBoundingClientRect().height;
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY >= flashPageHeight) {
+        navbar.classList.add("fixed");
+      } else {
+        navbar.classList.remove("fixed");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const taglineVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: {
@@ -59,7 +76,8 @@ const FlashPage = () => {
 
   return (
     <div
-      className={`${
+      ref={flashPageRef}
+      className={`flash-page ${
         loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
       style={{

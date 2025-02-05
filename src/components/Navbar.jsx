@@ -1,32 +1,60 @@
 "use client";
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation"; // For accessing the current route
+import Link from "next/link"; // Import Link from next/link
+import { Flex } from "antd";
+import Image from "next/image";
 
 const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [doubleDropdownOpen, setDoubleDropdownOpen] = useState(false);
+  const pathname = usePathname(); // Get the current path
+  const [isFixed, setIsFixed] = useState(false);
+
+  // Function to determine active class based on the current path
+  const getActiveClass = (path) => {
+    return pathname === path ? "text-blue-600" : "text-gray-800";
+  };
+
+  // Function to handle scroll event
+  const handleScroll = () => {
+    const flashPageHeight = document.querySelector(".flash-page").offsetHeight;
+    if (window.scrollY >= flashPageHeight) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-      {/* your other JSX code here */}
-
-      {/* Dropdown Button */}
-      <button
-        onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-      >
-        Dropdown
-        <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-        </svg>
-      </button>
-
-      {/* Dropdown Menu */}
-      {dropdownOpen && (
-        <div className="z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-          {/* Your menu items */}
+    <div
+      className={`navbar w-full bg-blue-200 text-gray-800 z-50 shadow-lg transition-all duration-500 ease-in-out ${
+        isFixed ? "fixed top-0 left-0" : ""
+      }`}
+    >
+      <Flex align="center">
+        <div className="w-[30%] sm:w-[50%] ">
+          <Image src={"/imgs/inelogo.png"} alt="logo" width={120} height={80} />
         </div>
-      )}
-    </nav>
+        <div className="flex justify-around text-sm sm:text-lg  font-bold w-[70%] sm:w-[50%]">
+          <div className={`cursor-pointer ${getActiveClass("/")}`}>
+            <Link href="/">Home</Link>
+          </div>
+          <div className={`cursor-pointer ${getActiveClass("/aboutus")}`}>
+            <Link href="/aboutus">About Us</Link>
+          </div>
+          <div className={`cursor-pointer ${getActiveClass("/contactus")}`}>
+            <Link href="/contactus">Contact Us</Link>
+          </div>
+        </div>
+      </Flex>
+    </div>
   );
 };
 
