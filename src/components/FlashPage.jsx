@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const FlashPage = () => {
@@ -8,7 +8,6 @@ const FlashPage = () => {
   const [logoVisible, setLogoVisible] = useState(false);
   const [taglineVisible, setTaglineVisible] = useState(false);
   const [showTextAnimation, setShowTextAnimation] = useState(false);
-  const flashPageRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,22 +39,6 @@ const FlashPage = () => {
     }
   }, [loaded]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const flashPageHeight =
-        flashPageRef.current.getBoundingClientRect().height;
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY >= flashPageHeight) {
-        navbar.classList.add("fixed");
-      } else {
-        navbar.classList.remove("fixed");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const taglineVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: {
@@ -75,17 +58,17 @@ const FlashPage = () => {
   };
 
   return (
-    <div
-      ref={flashPageRef}
-      className={`flash-page ${
-        loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-      } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
-      style={{
-        backgroundImage: 'url("/imgs/home-band.jpg")',
-      }}
-    >
-      <style>
-        {`
+    <>
+      <div
+        className={`flash-page ${
+          loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
+        style={{
+          backgroundImage: 'url("/imgs/home-band.jpg")',
+        }}
+      >
+        <style>
+          {`
           @keyframes text {
             0% {
               margin-bottom: -40px;
@@ -101,51 +84,52 @@ const FlashPage = () => {
             }
           }
         `}
-      </style>
+        </style>
 
-      <div className="flex flex-col items-center justify-center h-full text-center px-4">
-        <div className="flex flex-col items-center justify-center space-y-2">
-          <motion.img
-            src="/imgs/logo.png"
-            alt="Logo"
-            className="w-48 h-48 md:w-96 md:h-60 object-cover"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: logoVisible ? 1 : 0,
-              scale: logoVisible ? 1 : 0.8,
-            }}
-            transition={{
-              duration: 1.5,
-              ease: "easeInOut",
-            }}
-          />
-          <div className="text-blue-900 font-bold text-4xl md:text-5xl lg:text-6xl uppercase">
-            {"INE INTERNATIONAL".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                custom={index}
-                initial="hidden"
-                animate={showTextAnimation ? "visible" : "hidden"}
-                variants={textVariants}
-              >
-                {char}
-              </motion.span>
-            ))}
+        <div className="flex flex-col items-center justify-center h-full text-center px-4">
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <motion.img
+              src="/imgs/logo.png"
+              alt="Logo"
+              className="w-48 h-48 md:w-96 md:h-60 object-cover"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: logoVisible ? 1 : 0,
+                scale: logoVisible ? 1 : 0.8,
+              }}
+              transition={{
+                duration: 1.5,
+                ease: "easeInOut",
+              }}
+            />
+            <div className="text-blue-900 font-bold text-4xl md:text-5xl lg:text-6xl uppercase">
+              {"INE INTERNATIONAL".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  custom={index}
+                  initial="hidden"
+                  animate={showTextAnimation ? "visible" : "hidden"}
+                  variants={textVariants}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {taglineVisible && (
-          <motion.div
-            className="text-xl md:text-2xl font-semibold text-blue-900 mt-4"
-            initial="hidden"
-            animate="visible"
-            variants={taglineVariants}
-          >
-            Connecting Global Markets Through Quality Agriculture
-          </motion.div>
-        )}
+          {taglineVisible && (
+            <motion.div
+              className="text-xl md:text-2xl font-semibold text-blue-900 mt-4"
+              initial="hidden"
+              animate="visible"
+              variants={taglineVariants}
+            >
+              Connecting Global Markets Through Quality Agriculture
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
