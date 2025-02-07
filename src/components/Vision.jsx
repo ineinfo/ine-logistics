@@ -39,6 +39,7 @@ const keyframesStyle = `
 const Vision = () => {
   return (
     <>
+    {/* update */}
     <div className="flex justify-center items-center min-h-screen bg-white">
       <style>{keyframesStyle}</style>
       <div className="bg-white p-12 rounded-lg shadow-xl w-full max-w-6xl">
