@@ -38,7 +38,7 @@ const keyframesStyle = `
 
 const Vision = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-white">
       <style>{keyframesStyle}</style>
       <div className="bg-white p-12 rounded-lg shadow-xl w-full max-w-6xl">
             <h1 className="text-3xl text-blue-800 font-bold text-center mb-8">INE INTERNATIONAL</h1>
