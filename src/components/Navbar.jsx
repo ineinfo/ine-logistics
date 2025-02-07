@@ -1,42 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { usePathname } from "next/navigation"; // For accessing the current route
 import Link from "next/link"; // Import Link from next/link
 import { Flex } from "antd";
 import Image from "next/image";
 
-const Navbar = () => {
+const Navbar = ({ isFixed }) => {
   const pathname = usePathname(); // Get the current path
-  const [isFixed, setIsFixed] = useState(false);
 
   // Function to determine active class based on the current path
   const getActiveClass = (path) => {
     return pathname === path ? "text-blue-600" : "text-gray-800";
   };
 
-  // Function to handle scroll event
-  const handleScroll = () => {
-    const flashPageHeight = document.querySelector(".flash-page").offsetHeight;
-    if (window.scrollY >= flashPageHeight) {
-      setIsFixed(true);
-    } else {
-      setIsFixed(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
       <div
         className={`navbar w-full bg-blue-200 text-gray-800 z-50 shadow-lg transition-all duration-500 ease-in-out p-0 m-0 ${
-          isFixed ? "fixed top-0 left-0 w-[90vw] sm:w-full" : ""
+          isFixed ? "fixed top-0 left-0 sm:w-full" : ""
         }`}
       >
         <Flex align="center">

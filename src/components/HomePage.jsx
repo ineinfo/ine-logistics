@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import FlashPage from "./FlashPage";
 import Products from "./Products";
 import ProductsList from "./ProductsList";
@@ -7,10 +9,25 @@ import Quailty from "./Quailty";
 import Navbar from "./Navbar";
 
 const HomePage = () => {
+  const [navbarFixed, setNavbarFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setNavbarFixed(true);
+      } else {
+        setNavbarFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <FlashPage />
-      <Navbar />
+      <Navbar isFixed={navbarFixed} />
       <Products />
       <ProductsList />
       <Awards />
