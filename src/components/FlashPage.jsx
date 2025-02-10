@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { motion } from "framer-motion";
 
-const FlashPage = () => {
+const FlashPage = forwardRef((props, ref) => {
   const [loaded, setLoaded] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
   const [taglineVisible, setTaglineVisible] = useState(false);
@@ -60,6 +60,7 @@ const FlashPage = () => {
   return (
     <>
       <div
+        ref={ref}
         className={`flash-page ${
           loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
@@ -131,6 +132,6 @@ const FlashPage = () => {
       </div>
     </>
   );
-};
+});
 
 export default FlashPage;
