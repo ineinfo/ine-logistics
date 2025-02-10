@@ -281,6 +281,23 @@
   }
 }
 
+@media (max-width: 768px) {
+  .TrendingSlider .content {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .TrendingSlider .stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .TrendingSlider .card {
+    margin-bottom: 20px;
+  }
+}
+
 .TrendingSlider ul {
   margin: 0;
   padding: 0;

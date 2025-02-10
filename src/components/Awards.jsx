@@ -100,7 +100,7 @@ const Awards = () => {
                 className="w-24 sm:w-32"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                Spices Board India
+                IEC
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
                 We have genuinely acquired all the necessary certifications
@@ -119,7 +119,7 @@ const Awards = () => {
                 className="w-24 sm:w-32"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                APEDA Export Award
+                APEDA Export
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
                 We have genuinely acquired all the necessary certifications
@@ -143,7 +143,7 @@ const Awards = () => {
                 className="w-24 sm:w-32"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                Spices Board India
+                GST India
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
                 We have genuinely acquired all the necessary certifications
@@ -151,6 +151,7 @@ const Awards = () => {
                 from the Spices Board of India.
               </p>
             </Col>
+            
             <Col span={24} sm={5} className="justify-items-center sm:mx-auto">
               <img
                 src="/imgs/inelogo.png"
@@ -158,7 +159,7 @@ const Awards = () => {
                 className="w-24 sm:w-32"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                APEDA Export Award
+               FSSAI
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
                 We have genuinely acquired all the necessary certifications
@@ -167,13 +168,13 @@ const Awards = () => {
               </p>
             </Col>
           </Row>
-          <button className="mt-30 pt-1 pb-1 px-8 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full">
+          {/* <button className="mt-30 pt-1 pb-1 px-8 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full">
             Learn More
-          </button>
+          </button> */}
         </div>
       </div>
 
-      <TrendingSlider />
+      {/* <TrendingSlider /> */}
     </>
   );
 };
