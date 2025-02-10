@@ -75,6 +75,7 @@
 
 import React from "react";
 import { Row, Col, Divider, Image, Grid } from "antd";
+import TrendingSlider from "./TrendingSlider";
 
 const { useBreakpoint } = Grid;
 
@@ -171,6 +172,8 @@ const Awards = () => {
           </button>
         </div>
       </div>
+
+      <TrendingSlider />
     </>
   );
 };

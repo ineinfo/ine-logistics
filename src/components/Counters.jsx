@@ -23,7 +23,7 @@ const Counters = () => {
     <>
       <style>{rotateBorderStyle}</style>
 
-      <div className="flex flex-col items-center h-screen px-4 mt-28">
+      <div className="flex flex-col items-center px-4 mt-28 mb-30">
         {/* Text Content */}
         <p className="text-center text-blue-800 text-lg sm:text-xl md:text-2xl lg:text-4xl">
           <span className="font-bold text-blue-800">INE INTERNATIONAL</span> provider, Ensuring timely and 
