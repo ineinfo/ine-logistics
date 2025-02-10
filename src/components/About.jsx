@@ -6,7 +6,7 @@ const About = () => {
   return (
     <>
 
-    <Navbar/>
+      <Navbar />
       {/* First Section - Blue Gradient Background with Text and Image */}
       <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-10">
         <div className="flex items-center w-full max-w-screen-lg">
@@ -44,17 +44,22 @@ const About = () => {
             className="absolute top-[-80] left-10 w-1/2 h-1/ object-cover z-10"
           />
           <div className="absolute top-10 left-10 p-10 text-blue-900 z-20 max-w-md">
-            <p className="text-2xl font-bold mb-2">India is an agricultural country.</p>
+            <p className="text-2xl font-bold mb-2"> Empowering Agriculture for Global Food Security.</p>
             <p className="text-xl">
-              The principal occupation among the Indian masses is cultivation of crops and other farm related activities. India takes pride in being the second largest economy in the production of agricultural materials.
+              Our goals are to empower farmers, link buyers and
+              suppliers, and promote environmentally friendly
+              agricultural practices. We work to support farmers'
+              livelihoods, increase global food security, and satisfy
+              the growing demand for fresh, nutrient-dens.
+              produce
             </p>
           </div>
         </div>
       </div>
 
-     <Vision/>
+      <Vision />
 
-   
+
 
     </>
   );

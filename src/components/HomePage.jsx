@@ -6,6 +6,7 @@ import ProductsList from "./ProductsList";
 import Awards from "./Awards";
 import Quailty from "./Quailty";
 import Navbar from "./Navbar";
+import Counters from "./Counters";
 
 const HomePage = () => {
   return (
@@ -15,7 +16,9 @@ const HomePage = () => {
       <Products />
       <ProductsList />
       <Awards />
+      <Counters />
       <Quailty />
+      
     </>
   );
 };
