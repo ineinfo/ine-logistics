@@ -142,7 +142,7 @@ const Products = () => {
                     INE International is a trusted exporter of premium-quality
                     jaggery
                   </p>
-                  <Button type="primary" className="bg-blue-600 text-blue-900">
+                  <Button type="primary" className="bg-blue-600 text-white">
                     See More
                   </Button>
                 </div>
