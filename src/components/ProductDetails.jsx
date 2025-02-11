@@ -7,10 +7,11 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Navbar from "./Navbar";
 
-const ProductDetails = ({ id }) => {
+const ProductDetails = () => {
   const router = useRouter();
   const currentMonth = new Date().getMonth() + 1; // 1-based month index (Jan = 1, Dec = 12)
   const isImportExportAllowed = currentMonth >= 7 && currentMonth <= 12;
+  const { id } = useParams();
 
   return (
     <>
