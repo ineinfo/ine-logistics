@@ -73,13 +73,11 @@
 
 // export default Products;
 
-
-
-
 "use client";
 import { Flex, Image, Card, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import "./products.css";
+import Link from "next/link";
 
 const Products = () => {
   const [fadeIn, setFadeIn] = useState(false);
@@ -142,9 +140,11 @@ const Products = () => {
                     INE International is a trusted exporter of premium-quality
                     jaggery
                   </p>
-                  <Button type="primary" className="bg-blue-600 text-white">
-                    See More
-                  </Button>
+                  <Link href={`/${index + 1}/details`}>
+                    <Button type="primary" className="bg-blue-600 text-white">
+                      <span className="text-white">See More</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
