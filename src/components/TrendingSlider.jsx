@@ -84,9 +84,9 @@ const TrendingSlider = () => {
   return (
     <main className="TrendingSlider h-screen">
       <div className="content">
-        <h1>Certification</h1>
+        <h1>Our Clients Love Us</h1>
         <p style={{ background: 'linear-gradient(to right, #1e3c72, #2a5298)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-        With our certifications including IEC, GST, FSSAI, and APEDA, we ensure compliance with all regulatory standards, guaranteeing quality and reliability in every transaction. 
+        Here's what our satisfied clients say about the difference we've made to their businesses. 
         </p>
         <button className="btn" style={{ background: 'linear-gradient(to right, #1e3c72, #2a5298)', color: '#fff' }}>Explore More</button>
       </div>
