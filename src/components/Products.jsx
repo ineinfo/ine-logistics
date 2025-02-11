@@ -2,6 +2,7 @@
 import { Flex, Image, Card, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import "./products.css";
+import Link from "next/link";
 
 const productNames = [
   "Premium Jaggery",
@@ -90,9 +91,11 @@ const Products = () => {
                   <p className="text-blue-900 text-center text-lg font-semibold mb-4">
                     {productDescriptions[index]}
                   </p>
-                  <Button type="primary" className="bg-blue-600 text-white">
-                    See More
-                  </Button>
+                  <Link href={`/${index + 1}/details`}>
+                    <Button type="primary" className="bg-blue-600 text-white">
+                      <span className="text-white">See More</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
