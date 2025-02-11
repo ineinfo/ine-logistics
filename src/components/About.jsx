@@ -1,20 +1,17 @@
-import React from 'react';
-import Vision from './Vision';
-import Navbar from './Navbar';
+import React from "react";
+import Vision from "./Vision";
+import Navbar from "./Navbar";
 
 const About = () => {
   return (
     <>
-
       <Navbar />
       {/* First Section - Blue Gradient Background with Text and Image */}
-      <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-10">
+      <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-10 mt-28">
         <div className="flex items-center w-full max-w-screen-lg">
           {/* Left Side - Text */}
           <div className="text-center flex-1">
-            <p className="text-4xl font-bold text-blue-900 mb-4">
-              Who are we?
-            </p>
+            <p className="text-4xl font-bold text-blue-900 mb-4">Who are we?</p>
             <h3 className="text-2xl text-blue-800 mb-6">
               Spices specialists for over a decade
             </h3>
@@ -44,25 +41,23 @@ const About = () => {
             className="absolute top-[-80] left-10 w-1/2 h-1/ object-cover z-10"
           />
           <div className="absolute top-10 left-10 p-10 text-blue-900 z-20 max-w-md">
-            <p className="text-2xl font-bold mb-2"> Empowering Agriculture for Global Food Security.</p>
+            <p className="text-2xl font-bold mb-2">
+              {" "}
+              Empowering Agriculture for Global Food Security.
+            </p>
             <p className="text-xl">
-              Our goals are to empower farmers, link buyers and
-              suppliers, and promote environmentally friendly
-              agricultural practices. We work to support farmers'
-              livelihoods, increase global food security, and satisfy
-              the growing demand for fresh, nutrient-dens.
-              produce
+              Our goals are to empower farmers, link buyers and suppliers, and
+              promote environmentally friendly agricultural practices. We work
+              to support farmers' livelihoods, increase global food security,
+              and satisfy the growing demand for fresh, nutrient-dens. produce
             </p>
           </div>
         </div>
       </div>
 
       <Vision />
-
-
-
     </>
   );
-}
+};
 
 export default About;
