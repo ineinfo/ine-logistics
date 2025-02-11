@@ -17,12 +17,12 @@ const ProductsList = () => {
                 <Image
                   width={220}
                   height={220}
-                  src="/imgs/home-groundnut1.png"
+                  src="/imgs/banana.png"
                   className="mb-2.5 hover:scale-110 transition-transform"
                   preview={true}
                 />
                 <h3 className="text-center text-blue-950 text-2xl font-semibold">
-                  Groundnut
+                  Banana
                 </h3>
               </Col>
             </div>
@@ -37,11 +37,11 @@ const ProductsList = () => {
               </div>
             </Col>
             <div className=" hidden sm:block">
-              <Col span={3} className="text-center">
+              <Col span={3} className="text-left">
                 <Image
                   width={220}
                   height={220}
-                  src="/imgs/p1.png"
+                  src="/imgs/turmeric.png"
                   className="mb-2.5 hover:scale-110 transition-transform"
                   preview={true}
                 />
@@ -58,24 +58,12 @@ const ProductsList = () => {
               <Image
                 width={screens.sm ? 220 : 100}
                 height={screens.sm ? 220 : 100}
-                src="/imgs/p1.png"
+                src="/imgs/tomato1.png"
                 className="mb-2.5 hover:scale-110 transition-transform w-full"
                 preview={true}
               />
               <h3 className="text-center text-blue-950 text-2xl font-semibold">
-                Cumin
-              </h3>
-            </Col>
-            <Col span={8} sm={4} className="text-center">
-              <Image
-                width={screens.sm ? 220 : 100}
-                height={screens.sm ? 220 : 100}
-                src="/imgs/home-groundnut1.png"
-                className="mb-2.5 hover:scale-110 transition-transform w-full"
-                preview={true}
-              />
-              <h3 className="text-center text-blue-950 text-xl sm:text-2xl font-semibold">
-                Chillies
+              Tomato Puree
               </h3>
             </Col>
             <Col span={8} sm={4} className="text-center">
@@ -87,7 +75,19 @@ const ProductsList = () => {
                 preview={true}
               />
               <h3 className="text-center text-blue-950 text-xl sm:text-2xl font-semibold">
-                Rice
+                Red Chillies
+              </h3>
+            </Col>
+            <Col span={8} sm={4} className="text-center">
+              <Image
+                width={screens.sm ? 220 : 100}
+                height={screens.sm ? 220 : 100}
+                src="/imgs/potato.png"
+                className="mb-2.5 hover:scale-110 transition-transform w-full"
+                preview={true}
+              />
+              <h3 className="text-center text-blue-950 text-xl sm:text-2xl font-semibold">
+                Potato
               </h3>
             </Col>
           </Row>

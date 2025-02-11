@@ -42,9 +42,9 @@ const Awards = () => {
               className="justify-items-center sm:mx-auto mb-10 sm:mb-0"
             >
               <img
-                src="/imgs/inelogo.png"
+                src="/imgs/apeda.jpg"
                 alt="APEDA Export Award"
-                className="w-24 sm:w-32"
+                className="w-24 sm:w-32 mb-8"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
                 APEDA Export
@@ -82,9 +82,9 @@ const Awards = () => {
             
             <Col span={24} sm={5} className="justify-items-center sm:mx-auto">
               <img
-                src="/imgs/inelogo.png"
+                src="/imgs/fssai1.png"
                 alt="APEDA Export Award"
-                className="w-24 sm:w-32"
+                className="w-24 sm:w-32 mb-8"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
                FSSAI
