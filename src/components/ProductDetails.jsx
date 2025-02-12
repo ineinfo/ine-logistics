@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Button, Col, Row, message } from "antd";
+import { Button, Col, Row, message, Divider, Flex, Tag } from "antd";
 import { FaCartPlus, FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
+import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
 
 const ProductDetails = () => {
@@ -12,6 +13,11 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [currentMonth, setCurrentMonth] = useState(null);
   const [isImportExportAllowed, setIsImportExportAllowed] = useState(false);
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
 
   useEffect(() => {
     const month = new Date().getMonth() + 1; // 1-based month index (Jan = 1, Dec = 12)
@@ -54,14 +60,14 @@ const ProductDetails = () => {
                   type="default"
                   icon={<FaArrowLeft />}
                   onClick={() => router.back()}
-                  className="mb-4 text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+                  className="mb-4 pt-1 pb-1 px-8 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full"
                 >
                   Back
                 </Button>
 
                 {/* Product Title */}
                 <motion.h2
-                  className="text-4xl font-extrabold text-blue-600 mb-4 tracking-wide"
+                  className="text-4xl font-bold text-blue-700 mb-4 tracking-wide"
                   initial={{ x: -100 }}
                   animate={{ x: 0 }}
                   transition={{ duration: 0.6 }}
@@ -90,7 +96,7 @@ const ProductDetails = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                   >
-                    $2999.99
+                    {/* $2999.99 */}
                   </motion.div>
                   <motion.div
                     className="text-xl text-gray-500 line-through"
@@ -98,7 +104,7 @@ const ProductDetails = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                   >
-                    $3499.99
+                    {/* $3499.99 */}
                   </motion.div>
                 </div>
 
@@ -126,7 +132,22 @@ const ProductDetails = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                   >
-                    Import/Export is only available from July to December.
+                    <Divider orientation="left" style={{ color: "blue" }}>
+                      Import/Export is only available from July to December.
+                    </Divider>
+                    <Flex gap="2p4 0" wrap justify="middle">
+                      {monthNames.map((month, index) => (
+                        <Tag
+                          color={index >= 6 && index <= 11 ? "green" : "volcano"}
+                          key={index}
+                          style={{ margin: '4px', borderRadius: '8px' }}
+                          icon={index >= 6 && index <= 11 ? <CheckOutlined /> : <CloseOutlined />}
+                          disabled={index < 6 || index > 11}
+                        >
+                          {month}
+                        </Tag>
+                      ))}
+                    </Flex>
                   </motion.div>
                 )}
               </div>

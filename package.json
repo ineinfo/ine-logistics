@@ -13,6 +13,7 @@
     "@tailwindcss/postcss": "^4.0.1",
     "antd": "^5.24.0",
     "framer-motion": "^12.0.6",
+    "ine-logistics": "file:",
     "next": "15.1.6",
     "nodemailer": "^6.10.0",
     "postcss": "^8.5.1",

@@ -4,31 +4,37 @@ import React, { useEffect, useState } from "react";
 import "./products.css";
 import Link from "next/link";
 
-const productNames = [
-  "Premium Jaggery",
-  "Exotic Mango Delights",
-  "Savor the Onion",
-  "Pure Mango Pulp",
-  "Fiery Chilli Heat",
-  "Natural Grapes"
-];
-
-const productImages = [
-  "/imgs/jaggery.png",
-  "/imgs/mango.png",
-  "/imgs/onion.png",
-  "/imgs/mangoplup.png",
-  "/imgs/CHILLI.png",
-  "/imgs/greps1.png"
-];
-
-const productDescriptions = [
-  "INE International is a trusted exporter of premium-quality jaggery",
-  "INE International offers a variety of organic spices",
-  "INE International provides fresh and high-quality fruits",
-  "INE International supplies a range of dried nuts",
-  "INE International offers a selection of herbal teas",
-  "INE International provides natural and pure honey"
+const products = [
+  {
+    name: "Premium Jaggery",
+    image: "/imgs/jaggery.png",
+    description: "INE International is a trusted exporter of premium-quality jaggery"
+  },
+  {
+    name: "Exotic Mango Delights",
+    image: "/imgs/mango.png",
+    description: "INE International offers a variety of organic spices"
+  },
+  {
+    name: "Savor the Onion",
+    image: "/imgs/onion.png",
+    description: "INE International provides fresh and high-quality fruits"
+  },
+  {
+    name: "Pure Mango Pulp",
+    image: "/imgs/mangoplup.png",
+    description: "INE International supplies a range of dried nuts"
+  },
+  {
+    name: "Fiery Chilli Heat",
+    image: "/imgs/CHILLI.png",
+    description: "INE International offers a selection of herbal teas"
+  },
+  {
+    name: "Natural Grapes",
+    image: "/imgs/greps1.png",
+    description: "INE International provides natural and pure honey"
+  }
 ];
 
 const Products = () => {
@@ -58,7 +64,7 @@ const Products = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 px-4">
-          {Array.from({ length: 6 }, (_, index) => (
+          {products.map((product, index) => (
             <div
               key={index}
               className="relative rounded-xl shadow-lg overflow-hidden transition-transform duration-500 group perspective"
@@ -71,8 +77,8 @@ const Products = () => {
                 >
                   <div className="overflow-hidden rounded-xl">
                     <Image
-                      src={productImages[index]}
-                      alt={productNames[index]}
+                      src={product.image}
+                      alt={product.name}
                       preview={false}
                       width={300}
                       height={220}
@@ -82,14 +88,14 @@ const Products = () => {
                     />
                   </div>
                   <p className="text-center mt-3 text-lg font-semibold text-gray-800">
-                    {productNames[index]}
+                    {product.name}
                   </p>
                 </Card>
 
                 {/* Back Side */}
                 <div className="absolute w-full h-full backface-hidden rotate-y-180 card-back">
                   <p className="text-blue-900 text-center text-lg font-semibold mb-4">
-                    {productDescriptions[index]}
+                    {product.description}
                   </p>
                   <Link href={`/${index + 1}/details`}>
                     <Button type="primary" className="bg-blue-600 text-white">
