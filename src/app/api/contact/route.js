@@ -11,7 +11,7 @@ export async function POST(req) {
                 user: "export@ineinternational.in", // Gmail/SMTP email
                 pass: "nffjnqxjcrdydnsn", // App Password
             },
-        });
+        }); 
 
         // Email content
         const mailOptions = {

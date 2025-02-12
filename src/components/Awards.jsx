@@ -23,17 +23,15 @@ const Awards = () => {
               className="justify-items-center sm:mx-auto mb-10 sm:mb-0"
             >
               <img
-                src="/imgs/inelogo.png"
+                src="/imgs/spiceboard.JPG"
                 alt="APEDA Export Award"
-                className="w-24 sm:w-32"
+                className="w-24 h-28 mb-2 sm:w-32 object-contain"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                IEC
+              Spice Board
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
-                We have genuinely acquired all the necessary certifications
-                required in an authentic manner for the export of all spices
-                from the Spices Board of India.
+              We are certified by the Spice Board, ensuring the highest quality standards for spice exports. This certification strengthens our credibility in the global spice market.
               </p>
             </Col>
             <Col
@@ -50,9 +48,7 @@ const Awards = () => {
                 APEDA Export
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
-                We have genuinely acquired all the necessary certifications
-                required in an authentic manner for the export of all spices
-                from the Spices Board of India.
+              Our APEDA certification authorizes us to export agricultural and processed food products. It ensures compliance with international trade regulations for seamless exports.
               </p>
             </Col>
             <div className="border-l-1 border-blue-800 mx-4"></div>
@@ -66,17 +62,15 @@ const Awards = () => {
             )}
             <Col span={24} sm={5} className="justify-items-center sm:mx-auto mb-10 sm:mb-0">
               <img
-                src="/imgs/inelogo.png"
+                src="/imgs/msme.png"
                 alt="APEDA Export Award"
-                className="w-24 sm:w-32"
+                className="w-24 sm:w-32 mb-8"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
-                GST India
+                MSME
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
-                We have genuinely acquired all the necessary certifications
-                required in an authentic manner for the export of all spices
-                from the Spices Board of India.
+              As an MSME-registered business, we benefit from government support and incentives. This helps us enhance our export capabilities and expand globally.
               </p>
             </Col>
             
@@ -84,15 +78,13 @@ const Awards = () => {
               <img
                 src="/imgs/fssai1.png"
                 alt="APEDA Export Award"
-                className="w-24 sm:w-32 mb-8"
+                className="w-24 h-24 sm:w-32 mb-8 object-contain"
               />
               <h3 className="text-xl font-semibold sm:text-2xl text-blue-900">
                FSSAI
               </h3>
               <p className="text-base sm:text-lg mx-0.5 sm:mx-auto text-blue-900 text-center">
-                We have genuinely acquired all the necessary certifications
-                required in an authentic manner for the export of all spices
-                from the Spices Board of India.
+              Our FSSAI certification guarantees that all our food products meet safety and quality standards. It enables us to provide trusted and compliant food exports worldwide.
               </p>
             </Col>
           </Row>

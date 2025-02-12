@@ -18,7 +18,7 @@ const ContactUs = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      });
+      }); 
 
       const data = await response.json();
 
