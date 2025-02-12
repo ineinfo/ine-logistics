@@ -6,17 +6,19 @@ export async function POST(req) {
 
         // Nodemailer transporter setup
         const transporter = nodemailer.createTransport({
-            service: "hotmail", // Ya aap SMTP server use kar sakte hain
+            service: "gmail", // Ya aap SMTP server use kar sakte hain
             auth: {
-                user: "export@ineinternational.in", // Gmail/SMTP email
-                pass: "nffjnqxjcrdydnsn", // App Password
+                user: "export.ineinternational@gmail.com", // Gmail/SMTP email
+                pass: "lzhu oigi igvm xfir", // App Password
             },
         }); 
 
         // Email content
         const mailOptions = {
-            from: "nikhil.ineinfotech@gmail.com",
-            to: "your-email@example.com", // Apna email yahan dalein
+            from: "export.ineinternational@gmail.com",
+            to: [email,"export.ineinternational@gmail.com"], 
+            cc: ["jayshiva2704@gmail.com"], 
+            // bcc: ["bccrecipient@example.com", "anotherbcc@example.com"],
             subject: "New Contact Form Submission",
             html: `
         <h2>New Contact Form Submission</h2>
