@@ -1,11 +1,13 @@
 "use client";
-import { Flex, Image, Card, Button } from "antd";
-import React, { useEffect, useState } from "react";
-import "./products.css";
-import Link from "next/link";
-import { products } from "../data";
 
-const Products = () => {
+import React, { useEffect, useState } from "react";
+import { products } from "../data";
+import { Button, Card, Image } from "antd";
+import Link from "next/link";
+import "./products.css";
+import Navbar from "./Navbar";
+
+const AllProducts = () => {
   const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
@@ -16,23 +18,12 @@ const Products = () => {
   }, []);
 
   return (
-    <Flex
-      justify="center"
-      align="center"
-      className="px-6 py-20 bg-white min-h-screen"
-      style={{ marginTop: "100px" }}
-    >
-      <div className="w-full max-w-6xl text-center">
-        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500 sm:text-5xl md:text-6xl lg:text-7xl">
-          Our Products
-        </h1>
-        <p className="text-lg text-gray-600 font-semibold leading-relaxed max-w-2xl sm:mx-auto mx-2 mt-4 sm:text-xl">
-          INE International has built its reputation worldwide with a commitment
-          to quality and on-time delivery.
-        </p>
+    <>
+      <Navbar />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 px-4">
-          {products.slice(0, 6).map((product, index) => (
+      <div className="w-full max-w-[70vw] text-center mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-[150px] mb-4 px-4">
+          {products.map((product, index) => (
             <div
               key={index}
               className="relative rounded-xl shadow-lg overflow-hidden transition-transform duration-500 group perspective"
@@ -75,19 +66,9 @@ const Products = () => {
             </div>
           ))}
         </div>
-        <Link href={"/all-products"}>
-          <Button
-            type="primary"
-            className="bg-gradient-to-r from-blue-600 to-green-500 text-white mt-8  rounded-lg shadow-lg hover:from-blue-700 hover:to-green-600 transition-all duration-300"
-          >
-            <span className="text-white font-semibold text-lg px-8 py-5">
-              See All Products
-            </span>
-          </Button>
-        </Link>
       </div>
-    </Flex>
+    </>
   );
 };
 
-export default Products;
+export default AllProducts;
