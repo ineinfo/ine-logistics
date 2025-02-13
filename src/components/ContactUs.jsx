@@ -150,7 +150,7 @@ const ContactUs = () => {
                 </Form.Item>
                 <Form.Item
                   label="Phone"
-                  name="phone"
+                   name="phone"
                   rules={[
                     { required: true, message: "Please enter your phone" },
                     { pattern: /^\d{10}$/, message: "Phone number must be exactly 10 digits" },

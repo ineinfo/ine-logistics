@@ -1,44 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import { Card, Form, Input, message, Modal, Row, Col } from "antd"; // Import Modal and Grid components
+import Loader from "./Loader"; // Import Loader component
 
 const Quality = () => {
   const [form] = Form.useForm();
   const [modal, contextHolder] = Modal.useModal(); // Use Modal's hook
-
-  // const handleSubmit = () => {
-  //   form
-  //     .validateFields()
-  //     .then((values) => {
-  //       // If form is valid, show info modal for successful submission
-  //       modal.info({
-  //         title: "Success",
-  //         content: "Your query has been submitted successfully!",
-  //         okText: "OK",
-  //       });
-
-  //       // Reset form fields after successful submission
-  //       form.resetFields();
-  //     })
-  //     .catch((errorInfo) => {
-  //       // If validation fails, show error modal
-  //       modal.error({
-  //         title: "All fields are required!",
-  //         content:
-  //           "Please fill in all the required fields before submitting the form.",
-  //         okText: "OK",
-  //       });
-  //     });
-  // };
-
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleSubmit = async () => {
-
-    
-    
+    setLoading(true); // Set loading to true when form submission starts
     try {
       const values = await form.validateFields();
-      console.log(values,"Dhara");
+      console.log(values, "Dhara");
 
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -66,8 +40,13 @@ const Quality = () => {
         content: "Failed to send the message. Please try again!",
         okText: "OK",
       });
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2800); // Add a delay of 2.5 seconds
     }
   };
+
   return (
     <>
       <div className="bg-[#76c9f06b]">
@@ -132,9 +111,6 @@ const Quality = () => {
           <Form
             form={form}
             layout="vertical"
-            // style={{
-            //     width: '55%',
-            // }}
             onFinish={handleSubmit} // Handle form submission on finish
           >
             <Row gutter={[16, 16]} align={"middle"} justify={"center"}>
@@ -173,7 +149,7 @@ const Quality = () => {
                   />
                 </Form.Item>
               </Col>
- 
+
               {/* Second Row - Phone and City */}
               <Col xs={20} sm={10}>
                 <Form.Item
@@ -181,8 +157,10 @@ const Quality = () => {
                   name="phone"
                   rules={[
                     { required: true, message: "Please enter your phone" },
-                    { pattern: /^\d{10}$/, message: "Phone number must be exactly 10 digits" },
-
+                    {
+                      pattern: /^\d{10}$/,
+                      message: "Phone number must be exactly 10 digits",
+                    },
                   ]}
                 >
                   <Input
@@ -223,16 +201,8 @@ const Quality = () => {
                 >
                   <Input.TextArea
                     placeholder="Enquiry"
-                   
                     className="w-full sm:w-11/12"
                     autoSize={{ minRows: 4, maxRows: 5 }}
-                    // style={{
-                    //   height: "130px",
-                    //   borderBottom: "2px solid #76c9f0",
-                    //   paddingTop: "4px", // Ensures text starts from the top
-                    //   paddingLeft: "10px", // Adds space from left for better alignment
-                    //   textAlign: "left", // Ensures text is left-aligned
-                    // }}
                   />
                 </Form.Item>
               </Col>
@@ -243,8 +213,9 @@ const Quality = () => {
                 <button
                   type="submit" // Make the button submit the form
                   className="mt-10 pt-2 pb-2 px-16 text-xl mb-24 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full"
+                  disabled={loading} // Disable button when loading
                 >
-                  Submit
+                  {loading ? <Loader /> : "Submit"} 
                 </button>
               </Form.Item>
             </div>

@@ -53,7 +53,7 @@ const HomePage = () => {
       <Products />
       <ProductsList />
       <Awards />
-      <Counters />
+      {/* <Counters /> */}
       <Quailty />
     </>
   );
