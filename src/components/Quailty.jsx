@@ -109,7 +109,7 @@ const Quality = () => {
             Have a query on our products?
           </span>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center overflow-hidden mt-5">
           <Form
             form={form}
             layout="vertical"
