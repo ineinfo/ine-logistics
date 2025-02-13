@@ -62,7 +62,7 @@ const ProductsList = () => {
                 className="mb-2.5 hover:scale-110 transition-transform w-full"
                 preview={true}
               />
-              <h3 className="text-center text-blue-950 text-2xl font-semibold">
+              <h3 className="text-center text-blue-950 sm:text-2xl text-sm font-semibold">
               Tomato Puree
               </h3>
             </Col>
@@ -74,7 +74,7 @@ const ProductsList = () => {
                 className="mb-2.5 hover:scale-110 transition-transform w-full"
                 preview={true}
               />
-              <h3 className="text-center text-blue-950 text-xl sm:text-2xl font-semibold">
+              <h3 className="text-center text-blue-950 text-sm sm:text-2xl font-semibold">
                 Red Chillies
               </h3>
             </Col>
@@ -86,8 +86,8 @@ const ProductsList = () => {
                 className="mb-2.5 hover:scale-110 transition-transform w-full"
                 preview={true}
               />
-              <h3 className="text-center text-blue-950 text-xl sm:text-2xl font-semibold">
-                Potato
+              <h3 className="text-center text-blue-950 text-sm sm:text-2xl font-semibold">
+               Fresh Potato
               </h3>
             </Col>
           </Row>
