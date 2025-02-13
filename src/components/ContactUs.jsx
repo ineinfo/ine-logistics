@@ -18,7 +18,7 @@ const ContactUs = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      }); 
+      });
 
       const data = await response.json();
 
@@ -163,16 +163,16 @@ const ContactUs = () => {
                     { required: true, message: "Please enter your query" },
                   ]}
                 >
-                  <Input
+                  
+                  <Input.TextArea
                     placeholder="Enquiry"
                     style={{
-                      height: "80px",
                       borderBottom: "2px solid #76c9f0",
-                      paddingTop: "4px",
-                      paddingLeft: "10px",
-                      textAlign: "left",
                       fontSize: "14px",
                     }}
+                    
+                    // resize="false"
+                    autoSize={{ minRows: 4, maxRows: 5 }}
                   />
                 </Form.Item>
                 <div className="flex justify-center mt-5">

@@ -184,15 +184,16 @@ const Quality = () => {
                 >
                   <Input.TextArea
                     placeholder="Enquiry"
-                    rows={4}
+                   
                     className="w-full sm:w-11/12"
-                    style={{
-                      height: "130px",
-                      borderBottom: "2px solid #76c9f0",
-                      paddingTop: "4px", // Ensures text starts from the top
-                      paddingLeft: "10px", // Adds space from left for better alignment
-                      textAlign: "left", // Ensures text is left-aligned
-                    }}
+                    autoSize={{ minRows: 4, maxRows: 5 }}
+                    // style={{
+                    //   height: "130px",
+                    //   borderBottom: "2px solid #76c9f0",
+                    //   paddingTop: "4px", // Ensures text starts from the top
+                    //   paddingLeft: "10px", // Adds space from left for better alignment
+                    //   textAlign: "left", // Ensures text is left-aligned
+                    // }}
                   />
                 </Form.Item>
               </Col>

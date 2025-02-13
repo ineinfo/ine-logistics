@@ -50,9 +50,8 @@ const Products = () => {
                       preview={false}
                       width={300}
                       height={220}
-                      className={`object-contain transition-transform duration-500 ${
-                        fadeIn ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                      }`}
+                      className={`object-contain transition-transform duration-500 ${fadeIn ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                        }`}
                     />
                   </div>
                   <p className="text-center mt-3 text-lg font-semibold text-gray-800">
@@ -62,9 +61,15 @@ const Products = () => {
 
                 {/* Back Side */}
                 <div className="absolute w-full h-full backface-hidden rotate-y-180 card-back">
-                  <p className="text-blue-900 text-center text-lg font-semibold mb-4">
+                  {/* <p className="text-blue-900 text-center text-lg font-semibold mb-4">
                     {product.description}
+                  </p> */}
+                  <p className="text-blue-900 text-center text-lg font-semibold mb-4">
+                    {product.description.length > 100
+                      ? `${product.description.slice(0, 100)}...`
+                      : product.description}
                   </p>
+
                   <Link href={`/${index + 1}/details`}>
                     <Button type="primary" className="bg-blue-600 text-white">
                       <span className="text-white">See More</span>

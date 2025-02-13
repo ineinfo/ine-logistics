@@ -42,6 +42,30 @@ const ProductDetails = () => {
     setProduct(productData);
   }, [id]);
 
+  const getAvailabilityTags = (availability) => {
+    const availableMonths = availability
+      .split(" to ")
+      .map((month) => monthNames.indexOf(month.charAt(0).toUpperCase() + month.slice(1)) + 1);
+    
+    return monthNames.map((month, index) => {
+      const monthIndex = index + 1;
+      const isAvailable = availableMonths[0] <= availableMonths[1]
+        ? monthIndex >= availableMonths[0] && monthIndex <= availableMonths[1]
+        : monthIndex >= availableMonths[0] || monthIndex <= availableMonths[1];
+      
+      return (
+        <Tag
+          color={isAvailable ? "green" : "volcano"}
+          key={index}
+          style={{ margin: "4px", borderRadius: "8px" }}
+          icon={isAvailable ? <CheckOutlined /> : <CloseOutlined />}
+        >
+          {month}
+        </Tag>
+      );
+    });
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -151,28 +175,10 @@ const ProductDetails = () => {
                     transition={{ duration: 1 }}
                   >
                     <Divider orientation="left" style={{ color: "blue" }}>
-                      Import/Export Availability
+                      Products Availability
                     </Divider>
                     <Flex gap="24 0" wrap justify="middle">
-                      {monthNames.map((month, index) => (
-                        <Tag
-                          color={
-                            index >= 6 && index <= 11 ? "green" : "volcano"
-                          }
-                          key={index}
-                          style={{ margin: "4px", borderRadius: "8px" }}
-                          icon={
-                            index >= 6 && index <= 11 ? (
-                              <CheckOutlined />
-                            ) : (
-                              <CloseOutlined />
-                            )
-                          }
-                          disabled={index < 6 || index > 11}
-                        >
-                          {month}
-                        </Tag>
-                      ))}
+                      {getAvailabilityTags(product.availability)}
                     </Flex>
                   </motion.div>
                 )}
