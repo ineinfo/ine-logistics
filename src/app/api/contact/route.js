@@ -17,7 +17,7 @@ export async function POST(req) {
         const mailOptions = {
             from: "export.ineinternational@gmail.com",
             to: [email, "export.ineinternational@gmail.com"],
-            // cc: ["jayshiva2704@gmail.com"],
+            cc: ["jayshiva2704@gmail.com"],
             // bcc: ["bccrecipient@example.com", "anotherbcc@example.com"],
             subject: "New Contact Form Submission",
             html: `
