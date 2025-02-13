@@ -42,7 +42,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div style={{margin:"0px", padding:"0px"}}>
       {/* Flash Page with ref */}
       <FlashPage ref={flashPageRef} />
 
@@ -55,7 +55,7 @@ const HomePage = () => {
       <Awards />
       {/* <Counters /> */}
       <Quailty />
-    </>
+    </div>
   );
 };
 

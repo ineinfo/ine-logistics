@@ -43,11 +43,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 w-full z-50 bg-white/30 backdrop-blur-md shadow-md py-3 px-4 md:px-6 transition-all duration-700 ease-out ${
+      className={`fixed top-0 left-0 right-0 w-full z-50 bg-white/30 backdrop-blur-md shadow-md py-2 px-2 md:py-3 md:px-6 transition-all duration-700 ease-out ${
         isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
       }`}
     >
-      <div className="max-w-4xl flex items-center justify-between px-2 md:px-0">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-1 md:px-0">
         {/* Logo */}
         <Link href="/">
           <Image
