@@ -30,21 +30,21 @@ const Navbar = () => {
       if (
         menuRef.current &&
         !menuRef.current.contains(event.target) &&
-        event.target.closest("button") === null 
+        event.target.closest("button") === null
       ) {
         setIsMenuOpen(false);
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // Toggle menu state
+    setIsMenuOpen((prev) => !prev);
   };
 
   const getActiveClass = (path) =>
@@ -54,9 +54,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 w-full z-50 bg-white/30 backdrop-blur-md shadow-md py-2 px-2 md:py-3 md:px-6 transition-all duration-700 ease-out ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
-      }`}
+      className={`fixed top-0 left-0 right-0 w-full z-50 bg-white/30 backdrop-blur-md shadow-md py-2 px-2 md:py-3 md:px-6 transition-all duration-700 ease-out ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
+        }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-1 md:px-0">
         {/* Logo */}
@@ -91,11 +90,11 @@ const Navbar = () => {
 
         {/* Menu button for small devices */}
         <div className="md:hidden">
-        <div ref={menuRef}>
-  <button onClick={toggleMenu}>
-    <MenuUnfoldOutlined className="text-2xl" />
-  </button>
-</div>
+          <div ref={menuRef}>
+            <button onClick={toggleMenu}>
+              <MenuUnfoldOutlined className="text-2xl" />
+            </button>
+          </div>
 
         </div>
       </div>
@@ -128,4 +127,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 

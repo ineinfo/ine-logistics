@@ -51,7 +51,7 @@ const Quality = () => {
     <>
       <div className="bg-[#76c9f06b]">
         <div className="mt-10 flex justify-center">
-          <div className="flex flex-wrap pt-16 pb-5 justify-center gap-6 px-4">
+          <div className="flex flex-wrap pt-16 pb-5 justify-center gap-6">
             {/* First Card */}
             <Card
               title={
