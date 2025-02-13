@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { Form, Input, Modal, Card } from "antd";
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
+import Loader from "./Loader";
 
 const ContactUs = () => {
   const [form] = Form.useForm();
   const [modal, contextHolder] = Modal.useModal();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     try {
       const values = await form.validateFields();
 
@@ -38,6 +41,8 @@ const ContactUs = () => {
         content: "Failed to send the message. Please try again!",
         okText: "OK",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -181,8 +186,9 @@ const ContactUs = () => {
                     <button
                       type="submit"
                       className="mt-10 pt-2 pb-2 px-16 text-2xl mb-24 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full"
+                      disabled={loading}
                     >
-                      Submit
+                      {loading ? <Loader/> : "Submit"}
                     </button>
                   </Form.Item>
                 </div>

@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
 import { products } from "../data";
+import Loader from "./Loader";
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ const ProductDetails = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
