@@ -21,7 +21,7 @@ const AllProducts = () => {
     <>
       <Navbar />
 
-      <div className="w-full max-w-[70vw] text-center mx-auto">
+      <div className="w-full max-w-[90vw] text-center mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-[150px] mb-4 px-4">
           {products.map((product, index) => (
             <div
@@ -41,6 +41,7 @@ const AllProducts = () => {
                       preview={false}
                       width={280}
                       height={220}
+                      
                       className={`object-contain transition-transform duration-500 ${fadeIn ? "opacity-100 scale-100" : "opacity-0 scale-90"
                         }`}
                     />
@@ -74,3 +75,7 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
+
+
+
+
