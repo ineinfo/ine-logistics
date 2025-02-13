@@ -9,27 +9,27 @@ const testimonials = [
   {
     img: '/imgs/logo.png', // Local image path
     text: 'Discovering Be Better was a game-changer! Their unmatched expertise skyrocketed my online presence and credibility. Highly recommended',
-    name: 'Foram',
+    name: 'kLAUDIA MALINA',
   },
   {
     img: '/imgs/logo.png', // Local image path
     text: "Thanks to Be Better, I've unlocked my true potential and transformed how others perceive me. Their tailored strategies are a must for anyone looking to stand out!",
-    name: 'Nikhil',
+    name: 'SAIF SIDDQUI',
   },
   {
     img: '/imgs/logo.png', // Local image path
     text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
-    name: 'Jay',
+    name: 'OLIVER',
   },
   {
     img: '/imgs/logo.png', // Local image path
     text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
-    name: 'Dhara',
+    name: 'NATHAN',
   },
   {
     img: '/imgs/logo.png', // Local image path
     text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
-    name: 'Ajay',
+    name: 'RASHID',
   },
 ];
 

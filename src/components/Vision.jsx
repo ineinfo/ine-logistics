@@ -42,7 +42,7 @@ const Vision = () => {
     {/* update */}
     <div className="flex justify-center items-center min-h-screen bg-white">
       <style>{keyframesStyle}</style>
-      <div className="bg-white p-12 rounded-lg shadow-xl w-full max-w-6xl">
+      <div className="bg-white p-12 rounded-lg shadow-2xl w-full max-w-6xl">
             <h1 className="text-3xl text-blue-800 font-bold text-center mb-8">INE INTERNATIONAL</h1>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
           {/* Circle 1: Mission */}

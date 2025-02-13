@@ -29,11 +29,11 @@ const About = () => {
       </div>
 
       <div className="w-full bg-white">
-        <div className="relative flex justify-center shadow-2xl">
+        <div className="relative flex justify-center ">
           <img
             src="/imgs/about_bg.png"
             alt="Second Image"
-            className="w-full h-[400px] object-cover relative z-10"
+            className="w-full h-auto object-cover relative z-10"
           />
           <img
             src="/imgs/spoon1.png"

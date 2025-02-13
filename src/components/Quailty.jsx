@@ -6,31 +6,68 @@ const Quality = () => {
   const [form] = Form.useForm();
   const [modal, contextHolder] = Modal.useModal(); // Use Modal's hook
 
-  const handleSubmit = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        // If form is valid, show info modal for successful submission
-        modal.info({
+  // const handleSubmit = () => {
+  //   form
+  //     .validateFields()
+  //     .then((values) => {
+  //       // If form is valid, show info modal for successful submission
+  //       modal.info({
+  //         title: "Success",
+  //         content: "Your query has been submitted successfully!",
+  //         okText: "OK",
+  //       });
+
+  //       // Reset form fields after successful submission
+  //       form.resetFields();
+  //     })
+  //     .catch((errorInfo) => {
+  //       // If validation fails, show error modal
+  //       modal.error({
+  //         title: "All fields are required!",
+  //         content:
+  //           "Please fill in all the required fields before submitting the form.",
+  //         okText: "OK",
+  //       });
+  //     });
+  // };
+
+
+  const handleSubmit = async () => {
+
+    
+    
+    try {
+      const values = await form.validateFields();
+      console.log(values,"Dhara");
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        modal.success({
           title: "Success",
           content: "Your query has been submitted successfully!",
           okText: "OK",
         });
-
-        // Reset form fields after successful submission
         form.resetFields();
-      })
-      .catch((errorInfo) => {
-        // If validation fails, show error modal
-        modal.error({
-          title: "All fields are required!",
-          content:
-            "Please fill in all the required fields before submitting the form.",
-          okText: "OK",
-        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      modal.error({
+        title: "Error",
+        content: "Failed to send the message. Please try again!",
+        okText: "OK",
       });
+    }
   };
-
   return (
     <>
       <div className="bg-[#76c9f06b]">
@@ -136,7 +173,7 @@ const Quality = () => {
                   />
                 </Form.Item>
               </Col>
-
+ 
               {/* Second Row - Phone and City */}
               <Col xs={20} sm={10}>
                 <Form.Item
@@ -144,6 +181,8 @@ const Quality = () => {
                   name="phone"
                   rules={[
                     { required: true, message: "Please enter your phone" },
+                    { pattern: /^\d{10}$/, message: "Phone number must be exactly 10 digits" },
+
                   ]}
                 >
                   <Input
