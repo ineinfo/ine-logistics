@@ -42,7 +42,9 @@ const ContactUs = () => {
         okText: "OK",
       });
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2500); // Add a delay of 2 seconds
     }
   };
 
