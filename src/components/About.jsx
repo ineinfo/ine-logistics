@@ -38,7 +38,12 @@ const About = () => {
           <img
             src="/imgs/spoon1.png"
             alt="New Image"
-            className="absolute top-[-80] left-10 w-1/2 h-1/ object-cover z-10"
+            className="absolute top-[-100] left-10 w-1/2 h-1/ object-cover z-10"
+          />
+          <img
+            src="/imgs/products1.png"
+            alt="New Image"
+            className="absolute bottom-[-80] left-100 w-1/5 object-cover z-10"
           />
           <div className="absolute top-10 left-10 p-10 text-blue-900 z-20 max-w-md">
             <p className="text-2xl font-bold mb-2">
@@ -54,6 +59,48 @@ const About = () => {
           </div>
         </div>
       </div>
+      {/* Why Choose Us Section */}
+      <section className="pt-20 px-6">
+        <div className="max-w-screen-lg mx-auto text-center">
+          <h2 className="text-5xl font-extrabold text-blue-900 mb-8 tracking-wide drop-shadow-lg">
+            Why Choose Us?
+          </h2>
+          <p className="text-xl text-gray-700 mb-12 leading-relaxed">
+            Our expertise in spice trading, dedication to sustainability, and
+            commitment to quality make us the preferred partner for businesses
+            worldwide.
+          </p>
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-blue-500">
+              <h3 className="text-3xl font-semibold mb-4 text-blue-800 uppercase tracking-wide">
+                Quality Assurance
+              </h3>
+              <p className="text-gray-600 leading-7">
+                We source only the finest spices, ensuring freshness, purity,
+                and top-notch quality in every shipment.
+              </p>
+            </div>
+            <div className="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-blue-500">
+              <h3 className="text-3xl font-semibold mb-4 text-blue-800 uppercase tracking-wide">
+                Global Reach
+              </h3>
+              <p className="text-gray-600 leading-7">
+                Our extensive network ensures seamless logistics and timely
+                deliveries across the globe.
+              </p>
+            </div>
+            <div className="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-blue-500">
+              <h3 className="text-3xl font-semibold mb-4 text-blue-800 uppercase tracking-wide">
+                Sustainability
+              </h3>
+              <p className="text-gray-600 leading-7">
+                We promote eco-friendly farming practices and fair trade to
+                support farmers and protect our planet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Vision />
     </>
