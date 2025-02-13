@@ -1,15 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { Form, Input, Modal, Card } from "antd";
+import { Form, Input, Modal, Card, Grid, Button } from "antd";
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
 import Loader from "./Loader";
+
+const { useBreakpoint } = Grid;
 
 const ContactUs = () => {
   const [form] = Form.useForm();
   const [modal, contextHolder] = Modal.useModal();
   const [loading, setLoading] = useState(false);
-
+  const screens = useBreakpoint();
   const handleSubmit = async () => {
     setLoading(true);
     try {
@@ -44,7 +46,7 @@ const ContactUs = () => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 2500); // Add a delay of 2 seconds
+      }, 2500);
     }
   };
 
@@ -53,14 +55,12 @@ const ContactUs = () => {
       <Navbar />
 
       <div className="bg-[#76c9f06b] mt-28">
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="relative flex flex-row items-center">
-            {/* Dark Card (Left Side) */}
+        <div className="flex justify-center items-center min-h-screen px-4 sm:px-0">
+          <div className="relative flex flex-col sm:flex-row items-center w-full max-w-7xl">
             <Card
               style={{
-                // position: 'absolute',
-                left: "5%", // Increased space from the left
-                top: "20%", // Moved the dark card slightly lower
+                left: screens.sm ? "10%" : "0",
+                top: "20%",
                 width: 320,
                 height: 350,
                 backgroundColor: "#2c3e50",
@@ -72,7 +72,10 @@ const ContactUs = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                marginBottom: "25px",
+                marginTop: screens.sm ? "0" : "30px",
               }}
+              className="sm:mb-0"
             >
               <p className="font-bold">INE INTERNATIONAL</p>
               <p>504, SPG Empressa, Near Passport Office, Mithakali Six Road</p>
@@ -85,38 +88,42 @@ const ContactUs = () => {
               <p className="flex items-center">
                 <PhoneOutlined className="mr-2" /> +91-7948916312
               </p>
-              {/* <p className="flex items-center">
-                <MailOutlined className="mr-2" /> www.ineinternational.in
-              </p> */}
               <p className="flex items-center">
                 <MailOutlined className="mr-2" />
                 export@ineinternational.in
               </p>
             </Card>
 
-            {/* White Card (Right Side with Form) */}
             <Card
-              height="100%"
+              // height="100%"
               title={
                 <div className="flex justify-center font-bold text-2xl text-blue-900">
                   Contact Us
                 </div>
               }
               style={{
-                width: 650,
+                width: "100%",
+                maxWidth: 650,
                 maxHeight: "650px",
-                padding: "30px",
+                padding: screens.sm ? "30px" : "0",
                 position: "relative",
                 zIndex: 0,
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                marginLeft: "-12%",
+                marginLeft: "0",
+                marginBottom: screens.sm ? "0" : "30px",
               }}
+              // className="sm:ml-[-15%] mx-auto"
             >
               <Form
                 form={form}
                 layout="vertical"
                 onFinish={handleSubmit}
-                style={{ padding: "10px", marginLeft: "25%" }}
+                className="w-full"
+                style={{
+                  paddingLeft: screens.sm ? "20%" : "0",
+                  padding: "0",
+                  margin: "0",
+                }}
               >
                 <Form.Item
                   label="Name"
@@ -150,10 +157,13 @@ const ContactUs = () => {
                 </Form.Item>
                 <Form.Item
                   label="Phone"
-                   name="phone"
+                  name="phone"
                   rules={[
                     { required: true, message: "Please enter your phone" },
-                    { pattern: /^\d{10}$/, message: "Phone number must be exactly 10 digits" },
+                    {
+                      pattern: /^\d{10}$/,
+                      message: "Phone number must be exactly 10 digits",
+                    },
                   ]}
                 >
                   <Input
@@ -171,29 +181,26 @@ const ContactUs = () => {
                     { required: true, message: "Please enter your query" },
                   ]}
                 >
-                  
                   <Input.TextArea
                     placeholder="Enquiry"
                     style={{
                       borderBottom: "2px solid #76c9f0",
                       fontSize: "14px",
                     }}
-                    
-                    // resize="false"
                     autoSize={{ minRows: 4, maxRows: 5 }}
                   />
                 </Form.Item>
-                <div className="flex justify-center mt-5">
-                  <Form.Item>
-                    <button
-                      type="submit"
-                      className="mt-10 pt-2 pb-2 px-16 text-2xl mb-24 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full"
-                      disabled={loading}
-                    >
-                      {loading ? <Loader/> : "Submit"}
-                    </button>
-                  </Form.Item>
-                </div>
+                <Form.Item>
+                  <Button
+                    block
+                    type="primary"
+                    loading={loading}
+                    style={{ backgroundColor: "#0580f1", color: "white" }}
+                    htmlType="submit"
+                  >
+                    {loading ? <Loader /> : "Submit"}
+                  </Button>
+                </Form.Item>
               </Form>
               {contextHolder}
             </Card>
