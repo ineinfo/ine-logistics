@@ -74,7 +74,7 @@ const ProductDetails = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-white min-h-screen flex items-center justify-center py-10">
+      <div className="bg-white min-h-screen flex items-center justify-center pt-[110px] py-10">
         <motion.div
           className="w-full max-w-6xl px-6"
           initial={{ opacity: 0 }}
@@ -106,7 +106,7 @@ const ProductDetails = () => {
                   type="default"
                   icon={<FaArrowLeft />}
                   onClick={() => router.back()}
-                  className="mb-4 pt-1 pb-1 px-8 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full "
+                  className="mb-4 pt-1 sm:mt-0 mt-5 pb-1 px-8 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full "
                 >
                   Back
                 </Button>
