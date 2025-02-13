@@ -51,26 +51,27 @@ const Quality = () => {
     <>
       <div className="bg-[#76c9f06b]">
         <div className="mt-10 flex justify-center">
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap pt-16 pb-5 justify-center gap-6 px-4">
             {/* First Card */}
             <Card
               title={
-                <span className="text-blue-900 font-bold text-3xl">
+                <span className="text-blue-900 font-bold text-3xl md:text-4xl">
                   Our Quality Focus
                 </span>
               }
-              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 mb-5"
+              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 mb-5 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
               style={{
-                height: "400px",
+                height: "auto",
                 display: "flex",
                 flexDirection: "column",
+                padding: "20px",
               }}
             >
               <div>
-                <p className="mt-3 text-2xl text-blue-900">
+                <p className="mt-3 text-xl md:text-2xl text-blue-900 leading-relaxed">
                   At INE INTERNATIONAL we are committed to delivering the
                   highest quality vegetable, fruit, and spice products to our
-                  global customers.Our focus on quality is central to our
+                  global customers. Our focus on quality is central to our
                   mission of providing safe products to consumers.
                 </p>
               </div>
@@ -79,21 +80,22 @@ const Quality = () => {
             {/* Second Card */}
             <Card
               title={
-                <span className="text-blue-900 font-bold text-3xl">
+                <span className="text-blue-900 font-bold text-3xl md:text-4xl">
                   Custom Trade Solution
                 </span>
               }
-              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3"
+              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
               style={{
-                height: "400px",
+                height: "auto",
                 display: "flex",
                 flexDirection: "column",
+                padding: "20px",
               }}
             >
               <div>
-                <p className="mt-3 text-2xl text-blue-900">
-                  INE International is here with its brand new set of offering
-                  with our state-ofart Packaging for small businesses and
+                <p className="mt-3 text-xl md:text-2xl text-blue-900 leading-relaxed">
+                  INE International is here with its brand new set of offerings
+                  with our state-of-the-art packaging for small businesses and
                   traders who are looking for business opportunities.
                 </p>
               </div>
@@ -215,7 +217,7 @@ const Quality = () => {
                   className="mt-10 pt-2 pb-2 px-16 text-xl mb-24 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white rounded-full"
                   disabled={loading} // Disable button when loading
                 >
-                  {loading ? <Loader /> : "Submit"} 
+                  {loading ? <Loader /> : "Submit"}
                 </button>
               </Form.Item>
             </div>
