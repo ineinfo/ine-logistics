@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { EllipsisOutlined } from "@ant-design/icons"; // Import the icon
+import { MenuUnfoldOutlined } from "@ant-design/icons"; // Import the icon
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -35,6 +35,9 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuRef]);
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev); // Toggle menu state
+  };
 
   const getActiveClass = (path) =>
     pathname === path
@@ -73,6 +76,7 @@ const Navbar = () => {
           <Link
             href="/contactus"
             className={`px-3 py-1 ${getActiveClass("/contactus")}`}
+            
           >
             Contact Us
           </Link>
@@ -80,8 +84,8 @@ const Navbar = () => {
 
         {/* Menu button for small devices */}
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <EllipsisOutlined className="text-2xl" />
+        <button onClick={toggleMenu}>
+            <MenuUnfoldOutlined className="text-2xl" />
           </button>
         </div>
       </div>
@@ -90,20 +94,22 @@ const Navbar = () => {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="md:hidden mt-3 flex flex-col space-y-2 text-lg font-semibold"
+          className="md:hidden mt-3 flex justify-center space-x-4 text-lg font-semibold"
         >
-          <Link href="/" className={`block px-3 py-1 ${getActiveClass("/")}`}>
+          <Link href="/" className={`block px-3 py-1 ${getActiveClass("/")}`} onClick={toggleMenu}>
             Home
           </Link>
           <Link
             href="/aboutus"
             className={`block px-3 py-1 ${getActiveClass("/aboutus")}`}
+            onClick={toggleMenu}
           >
             About Us
           </Link>
           <Link
             href="/contactus"
             className={`block px-3 py-1 ${getActiveClass("/contactus")}`}
+            onClick={toggleMenu}
           >
             Contact Us
           </Link>
@@ -114,3 +120,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -9,6 +9,7 @@ import Quailty from "./Quailty";
 import Navbar from "./Navbar";
 import Counters from "./Counters";
 import { motion } from "framer-motion";
+import Testimonials from "./Testimonials";
 
 const HomePage = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -54,6 +55,7 @@ const HomePage = () => {
       <ProductsList />
       <Awards />
       {/* <Counters /> */}
+      <Testimonials />
       <Quailty />
     </div>
   );

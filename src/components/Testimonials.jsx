@@ -8,27 +8,27 @@ import 'react-multi-carousel/lib/styles.css';
 const testimonials = [
   {
     img: '/imgs/logo.png', // Local image path
-    text: 'Discovering Be Better was a game-changer! Their unmatched expertise skyrocketed my online presence and credibility. Highly recommended',
+    text: 'We have been sourcing fresh fruits and vegetables from INE INTERNATIONAL for over a year now, and the quality is consistently top-notch. Their products are fresh, well-packaged, and delivered on time. Highly recommended',
     name: 'kLAUDIA MALINA',
   },
   {
     img: '/imgs/logo.png', // Local image path
-    text: "Thanks to Be Better, I've unlocked my true potential and transformed how others perceive me. Their tailored strategies are a must for anyone looking to stand out!",
+    text: "INE INTERNATIONAL is a trustworthy partner for our spice imports. Their black pepper and cardamom are of superior quality, and they always ensure proper documentation and compliance with international standards. A pleasure to work with",
     name: 'SAIF SIDDQUI',
   },
   {
     img: '/imgs/logo.png', // Local image path
-    text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
+    text: "One of the best suppliers we have worked with! The team at INE INTERNATIONAL is professional, responsive, and ensures timely shipments. Their mangoes and bananas are always fresh and in perfect condition.",
     name: 'OLIVER',
   },
   {
     img: '/imgs/logo.png', // Local image path
-    text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
+    text: "We appreciate the competitive pricing and consistent quality from INE INTERNATIONAL. Their turmeric is highly aromatic and meet our quality standards. Looking forward to more business with them!",
     name: 'NATHAN',
   },
   {
     img: '/imgs/logo.png', // Local image path
-    text: "Working with Be Better, was one of the best career decisions I've made. Their dedication resulted in a brand identity that truly resonates with my audience. Invest in your personal brand with them – you won't regret it!",
+    text: "We appreciate the affordability and quality of products from Global Trade Exports. Their pricing is fair, and they never compromise on product standards. A fantastic import-export company!",
     name: 'RASHID',
   },
 ];
