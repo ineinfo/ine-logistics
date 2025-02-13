@@ -23,18 +23,26 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [pathname]);
 
+
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        event.target.closest("button") === null 
+      ) {
         setIsMenuOpen(false);
       }
     };
-
+  
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuRef]);
+  }, []);
+  
+
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev); // Toggle menu state
   };
@@ -76,7 +84,6 @@ const Navbar = () => {
           <Link
             href="/contactus"
             className={`px-3 py-1 ${getActiveClass("/contactus")}`}
-            
           >
             Contact Us
           </Link>
@@ -84,9 +91,12 @@ const Navbar = () => {
 
         {/* Menu button for small devices */}
         <div className="md:hidden">
-        <button onClick={toggleMenu}>
-            <MenuUnfoldOutlined className="text-2xl" />
-          </button>
+        <div ref={menuRef}>
+  <button onClick={toggleMenu}>
+    <MenuUnfoldOutlined className="text-2xl" />
+  </button>
+</div>
+
         </div>
       </div>
 
@@ -94,22 +104,20 @@ const Navbar = () => {
       {isMenuOpen && (
         <div
           ref={menuRef}
-               className="md:hidden mt-3 flex flex-col space-y-2 text-lg font-semibold"
+          className="md:hidden mt-3 flex flex-col space-y-2 text-lg font-semibold"
         >
           <Link href="/" className={`block px-3 py-1 ${getActiveClass("/")}`} onClick={toggleMenu}>
             Home
           </Link>
           <Link
             href="/aboutus"
-            className={`block px-3 py-1 ${getActiveClass("/aboutus")}`}
-            onClick={toggleMenu}
+            className={`block px-3 py-1 ${getActiveClass("/aboutus")}`} onClick={toggleMenu}
           >
             About Us
           </Link>
           <Link
             href="/contactus"
-            className={`block px-3 py-1 ${getActiveClass("/contactus")}`}
-            onClick={toggleMenu}
+            className={`block px-3 py-1 ${getActiveClass("/contactus")}`} onClick={toggleMenu}
           >
             Contact Us
           </Link>
