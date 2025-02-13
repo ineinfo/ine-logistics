@@ -59,7 +59,7 @@ const Quality = () => {
                   Our Quality Focus
                 </span>
               }
-              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 mb-5 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
+              className="w-[90%] sm:w-1/2 lg:w-2/5 xl:w-1/3 mb-5 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
               style={{
                 height: "auto",
                 display: "flex",
@@ -84,12 +84,12 @@ const Quality = () => {
                   Custom Trade Solution
                 </span>
               }
-              className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
+              className="w-[90%] sm:w-1/2 lg:w-2/5 xl:w-1/3 shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300 bg-white"
               style={{
                 height: "auto",
                 display: "flex",
                 flexDirection: "column",
-                padding: "20px",
+                // padding: "20px",
               }}
             >
               <div>
