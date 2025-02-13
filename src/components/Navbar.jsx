@@ -94,7 +94,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="md:hidden mt-3 flex flex-col space-y-2 text-lg font-semibold"
+               className="md:hidden mt-3 flex flex-col space-y-2 text-lg font-semibold"
         >
           <Link href="/" className={`block px-3 py-1 ${getActiveClass("/")}`} onClick={toggleMenu}>
             Home
