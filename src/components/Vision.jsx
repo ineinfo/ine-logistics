@@ -39,25 +39,37 @@ const keyframesStyle = `
 const Vision = () => {
   return (
     <>
-    {/* update */}
-    <div className="flex justify-center items-center min-h-screen bg-white">
-      <style>{keyframesStyle}</style>
-      <div className="bg-white p-12 rounded-lg shadow-2xl w-full max-w-6xl">
-            <h1 className="text-3xl text-blue-800 font-bold text-center mb-8">INE INTERNATIONAL</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-          {/* Circle 1: Mission */}
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <div style={outerCircleStyle} className="flex items-center justify-center">
-              <div style={innerCircleStyle} className="text-center p-4">
-                <img src="/imgs/mision.png" alt="Mission" className="w-20 h-20 mx-auto mb-2" />
-                <p className="text-blue-800 font-bold text-xl">Mission</p>
-                {/* Additional Small Text */}
-                <p className="text-blue-900 text-sm mt-4">
-                  At INE International, our mission is to facilitate the seamless exchange of high-quality agricultural products between regions, creating value for farmers, suppliers, and customers worldwide.
-                </p>
+      {/* update */}
+      <div className="flex justify-center items-center min-h-screen bg-white overflow-hidden">
+        <style>{keyframesStyle}</style>
+        <div className="bg-white p-12 rounded-lg shadow-2xl w-full max-w-6xl">
+          <h1 className="text-3xl text-blue-800 font-bold text-center mb-8">
+            INE INTERNATIONAL
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+            {/* Circle 1: Mission */}
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <div
+                style={outerCircleStyle}
+                className="flex items-center justify-center"
+              >
+                <div style={innerCircleStyle} className="text-center p-4">
+                  <img
+                    src="/imgs/mision.png"
+                    alt="Mission"
+                    className="w-20 h-20 mx-auto mb-2"
+                  />
+                  <p className="text-blue-800 font-bold text-xl">Mission</p>
+                  {/* Additional Small Text */}
+                  <p className="text-blue-900 text-sm mt-4">
+                    At INE International, our mission is to facilitate the
+                    seamless exchange of high-quality agricultural products
+                    between regions, creating value for farmers, suppliers, and
+                    customers worldwide.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
             {/* Circle 2: Vision */}
             <div className="flex flex-col items-center justify-center space-y-4">
