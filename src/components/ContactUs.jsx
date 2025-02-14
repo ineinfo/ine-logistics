@@ -54,7 +54,7 @@ const ContactUs = () => {
     <>
       <Navbar />
 
-      <div className="bg-[#76c9f06b] mt-28">
+      <div className="bg-[#76c9f06b] mt-[110px]">
         <div className="flex justify-center items-center min-h-screen px-4 sm:px-0">
           <div className="relative flex flex-col sm:flex-row items-center w-full max-w-7xl">
             <Card
