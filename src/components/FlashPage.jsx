@@ -2,12 +2,16 @@
 
 import React, { useState, useEffect, forwardRef } from "react";
 import { motion } from "framer-motion";
+import { Grid } from "antd";
+
+const {useBreakpoint} = Grid;
 
 const FlashPage = forwardRef((props, ref) => {
   const [loaded, setLoaded] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
   const [taglineVisible, setTaglineVisible] = useState(false);
   const [showTextAnimation, setShowTextAnimation] = useState(false);
+  const screens = useBreakpoint();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,7 +69,7 @@ const FlashPage = forwardRef((props, ref) => {
           loaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         } transition-all duration-1000 ease-in-out bg-cover bg-center bg-fixed min-h-screen`}
         style={{
-          backgroundImage: 'url("/imgs/home-band.jpg")',
+          backgroundImage: screens.sm ? 'url("/imgs/Web-banner.jpg")':'url("/imgs/mobile-banner.jpg")',
         }}
       >
         <style>
@@ -87,12 +91,12 @@ const FlashPage = forwardRef((props, ref) => {
         `}
         </style>
 
-        <div className="flex flex-col items-center justify-center h-full text-center px-4">
+        <div className="flex flex-col items-center md:items-start justify-center h-full text-center ml-0 md:ml-10 px-4">
           <div className="flex flex-col items-center justify-center space-y-2">
             <motion.img
-              src="/imgs/logo.png"
+              src="/imgs/logo-icon.png"
               alt="Logo"
-              className="w-48 h-48 md:w-96 md:h-60 object-cover"
+              className="w-[90px] h-[65px] md:w-[209px] md:h-[150px] object-cover m-[23px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{
                 opacity: logoVisible ? 1 : 0,
@@ -103,7 +107,7 @@ const FlashPage = forwardRef((props, ref) => {
                 ease: "easeInOut",
               }}
             />
-            <div className="text-blue-900 font-bold text-4xl md:text-5xl lg:text-6xl uppercase">
+            <div className="text-blue-900 font-bold text-3xl md:text-5xl lg:text-6xl uppercase">
               {"INE INTERNATIONAL".split("").map((char, index) => (
                 <motion.span
                   key={index}
@@ -120,7 +124,7 @@ const FlashPage = forwardRef((props, ref) => {
 
           {taglineVisible && (
             <motion.div
-              className="text-xl md:text-2xl font-semibold text-blue-900 mt-4"
+              className="text-lg md:text-2xl font-semibold text-blue-900 mt-2 md:mt-4"
               initial="hidden"
               animate="visible"
               variants={taglineVariants}
