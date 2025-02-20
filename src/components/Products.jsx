@@ -20,7 +20,7 @@ const Products = () => {
       justify="center"
       align="center"
       className="px-6 py-20 bg-white min-h-screen"
-      style={{ marginTop: "100px" }}
+      style={{ marginTop: "150px" }}
     >
       <div className="w-full max-w-6xl text-center">
         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500 sm:text-5xl md:text-6xl lg:text-7xl">
@@ -50,8 +50,9 @@ const Products = () => {
                       preview={false}
                       width={300}
                       height={220}
-                      className={`object-contain transition-transform duration-500 ${fadeIn ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                        }`}
+                      className={`object-contain transition-transform duration-500 ${
+                        fadeIn ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                      }`}
                     />
                   </div>
                   <p className="text-center mt-3 text-lg font-semibold text-gray-800">

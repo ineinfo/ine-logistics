@@ -13,7 +13,7 @@ const About = () => {
     <>
       <Navbar />
       {/* First Section - Blue Gradient Background with Text and Image */}
-      <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-4 md:px-10 mt-[110px]">
+      <div className="h-[400px] bg-[#76c9f06b] flex items-center justify-center px-4 md:px-10 mt-[80px]">
         <div className="flex flex-col md:flex-row items-center w-full max-w-screen-lg">
           {/* Left Side - Text */}
           <div className="text-center flex-1 mb-6 md:mb-0">
@@ -30,7 +30,9 @@ const About = () => {
             <img
               src="/imgs/p1.png" // Replace with your image URL
               alt="Spices"
-              className={`${screens.sm?"w-full object-cover":""} h-[180px] w-[200px] md:h-[330px] mt-0 md:mt-20`} 
+              className={`${
+                screens.sm ? "w-full object-cover" : ""
+              } h-[180px] w-[200px] md:h-[330px] mt-0 md:mt-20`}
             />
           </div>
         </div>
