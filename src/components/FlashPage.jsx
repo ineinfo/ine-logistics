@@ -92,7 +92,7 @@ const FlashPage = forwardRef((props, ref) => {
         </style>
 
         <div className="flex flex-col items-center md:items-start justify-center h-full text-center ml-0 md:ml-10 px-4">
-          <div className="flex flex-col items-center justify-center space-y-2">
+          <div className="flex flex-col items-center justify-center space-y-2 mt-0 md:mt-9">
             <motion.img
               src="/imgs/logo-icon.png"
               alt="Logo"
