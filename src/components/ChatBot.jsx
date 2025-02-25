@@ -431,7 +431,7 @@ export default function Chatbot() {
             step !== 10 &&
             step !== 6 &&
             step <= 9 && (
-              <div className="flex items-center gap-2 mt-4">
+              <div className="flex items-end gap-2 mt-4">
                 <Input
                   autoFocus={true}
                   className="flex-1 mr-2"
@@ -440,12 +440,17 @@ export default function Chatbot() {
                   onChange={handleInputChange}
                 />
                 <Button
+                  variant="outlined"
                   color="blue"
-                  variant="solid"
-                  className="bg-blue-800 text-white"
+                  className=" text-white "
                   onClick={handleSend}
                 >
-                  Send
+                  <Image
+                    preview={false}
+                    src="/imgs/send.svg"
+                    height={25}
+                    width={22}
+                  />
                 </Button>
               </div>
             )}

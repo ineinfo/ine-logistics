@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "INE INTERNATIONAL",
   icons: {
-    icon: "/icon.png", 
+    icon: "/imgs/logo-icon.png",
   },
   description: "Managed by a team of professionals with over 7 years of experience in the industry, INE International is a leading supplier of spices, herbs, and other food ingredients.",
 };
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}
-      style={{margin:"0px", padding:"0px"}}
+        style={{ margin: "0px", padding: "0px" }}
       >
         {children}
       </body>
