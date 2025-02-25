@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Button, Select, Input, Flex, Image } from "antd";
+import { Button, Select, Input, Flex, Image, Grid } from "antd";
 import {
   CheckOutlined,
   CloseOutlined,
@@ -13,6 +13,8 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { countries, products } from "@/data";
 
 const { Option } = Select;
+
+const { useBreakpoint } = Grid;
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
@@ -30,6 +32,8 @@ export default function Chatbot() {
   const [step, setStep] = useState(1);
   const [userResponses, setUserResponses] = useState({});
   const chatRef = useRef(null);
+
+  const screens = useBreakpoint();
 
   useEffect(() => {
     const showHintTimer = setInterval(() => {
@@ -262,7 +266,7 @@ export default function Chatbot() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          className="fixed bottom-[92px] right-20 max-w-xs bg-blue-500 text-white p-3 rounded-lg shadow-lg font-semibold flex items-center gap-2"
+          className="fixed sm:bottom-[92px] bottom-[68px] right-12 md:right-20 max-w-xs bg-blue-500 text-white p-3 rounded-lg shadow-lg font-semibold flex items-center gap-2"
           style={{
             borderTopRightRadius: "16px",
             borderTopLeftRadius: "16px",
@@ -275,7 +279,7 @@ export default function Chatbot() {
       )}
 
       <div
-        className="fixed bottom-6 cursor-pointer right-6 bg-white text-white shadow-lg rounded-full h-16 flex items-center justify-center hover:bg-gray-200 transition-all"
+        className="fixed bottom-6 cursor-pointer right-4 md:right-6 bg-white text-white shadow-lg rounded-full sm:h-16 h-10 flex items-center justify-center hover:bg-gray-200 transition-all"
         onClick={handleChatToggle}
       >
         <DotLottieReact
@@ -290,7 +294,7 @@ export default function Chatbot() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-[92px] right-20 w-80 bg-white shadow-xl rounded-lg p-6 flex flex-col"
+          className="fixed sm:bottom-[92px] bottom-[68px] right-12 md:right-20 w-72 md:w-80 bg-white shadow-xl rounded-lg p-4 flex flex-col"
           style={{
             borderTopRightRadius: "16px",
             borderTopLeftRadius: "16px",
@@ -299,7 +303,7 @@ export default function Chatbot() {
           }}
         >
           <div
-            className="overflow-y-auto h-80 w-72 mx-auto"
+            className="overflow-y-auto h-72 md:h-80 w-64 md:w-72 mx-auto"
             style={{ scrollbarWidth: "none" }}
             ref={chatRef}
           >
@@ -335,10 +339,10 @@ export default function Chatbot() {
                       onChange={handleSelectChange}
                       defaultValue={msg.text}
                       dropdownStyle={{
-                        maxHeight: "23vh",
+                        maxHeight: screens.sm ? "23vh" : "33vh",
                         overflow: "auto",
                         scrollbarWidth: "none",
-                        minWidth: "13vw",
+                        minWidth: screens.sm ? "13vw" : "64vw",
                       }}
                       disabled={!step === 1 || !step === 6}
                     >
@@ -379,7 +383,7 @@ export default function Chatbot() {
                       <div>{msg.text}</div>
                       <Flex
                         justify="space-between"
-                        className="w-56"
+                        className="w-48 md:w-56"
                         style={{ marginTop: "10px" }}
                       >
                         <Button
@@ -429,6 +433,7 @@ export default function Chatbot() {
             step <= 9 && (
               <div className="flex items-center gap-2 mt-4">
                 <Input
+                  autoFocus={true}
                   className="flex-1 mr-2"
                   placeholder="Type your answer..."
                   value={inputValue}
