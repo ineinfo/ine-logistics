@@ -1,21 +1,33 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Button, Select, Input, Card } from "antd";
-import { MessageOutlined, RobotOutlined } from "@ant-design/icons";
+import { useState, useEffect, useRef } from "react";
+import { Button, Select, Input, Flex, Image } from "antd";
+import {
+  MessageOutlined,
+  RobotOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { products } from "@/data";
 
 const { Option } = Select;
 
 export default function Chatbot() {
-  const [step, setStep] = useState(1);
-  const [responses, setResponses] = useState({
-    issueType: "",
-    description: "",
-    contactInfo: "",
-  });
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      type: "select",
+      text: "Please select an option:",
+      options: ["Option 1", "Option 2", "Option 3"],
+    },
+  ]);
+  const [inputValue, setInputValue] = useState("");
+  const [buttonValue, setButtonValue] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showHint, setShowHint] = useState(true);
+  const [step, setStep] = useState(1);
+  const [userResponses, setUserResponses] = useState({});
+  const chatRef = useRef(null);
 
   useEffect(() => {
     const showHintTimer = setInterval(() => {
@@ -29,21 +41,194 @@ export default function Chatbot() {
     return () => clearInterval(showHintTimer);
   }, []);
 
-  const handleNext = () => setStep(step + 1);
-  const handleBack = () => setStep(step - 1);
-  const handleChatToggle = () => setIsChatOpen(!isChatOpen);
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleChatToggle = () => {
+    setIsChatOpen(!isChatOpen);
+    setTimeout(() => {
+      setMessages([
+        {
+          sender: "bot",
+          type: "select",
+          text: "Please select an option:",
+          options: ["Option 1", "Option 2", "Option 3"],
+        },
+      ]);
+      setStep(1);
+      setUserResponses({});
+    }, 1000);
+  };
+
+  const handleUserMessage = (message) => {
+    setMessages((prev) => [
+      ...prev,
+      { sender: "user", type: "text", text: message },
+    ]);
+  };
+
+  const handleBotMessage = (message, type = "text", options = []) => {
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", type, text: message, options },
+    ]);
+  };
 
   const handleSelectChange = (value) => {
-    setResponses({ ...responses, issueType: value });
+    handleUserMessage(value);
+    if (step === 1) {
+      setUserResponses((prev) => ({ ...prev, selectedOption: value }));
+      setTimeout(() => {
+        handleBotMessage("Please enter your name:", "input");
+        setStep(2);
+      }, 1000);
+    } else if (step === 6) {
+      setUserResponses((prev) => ({ ...prev, country: value }));
+      setTimeout(() => {
+        handleBotMessage("Please enter the quality:", "input");
+        setStep(7);
+      }, 1000);
+    }
   };
 
-  const handleInputChange = (e, field) => {
-    setResponses({ ...responses, [field]: e.target.value });
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
 
-  const handleConfirm = () => {
-    console.log("User Responses:", responses);
-    alert("Thank you! Your response has been recorded.");
+  const handleSend = () => {
+    if (!inputValue.trim()) {
+      handleBotMessage("Please provide a valid input.");
+      return;
+    }
+
+    if (step === 2 && !/^[a-zA-Z\s]+$/.test(inputValue)) {
+      handleBotMessage("Please enter a valid name.");
+      return;
+    }
+
+    if (step === 3 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputValue)) {
+      handleBotMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (
+      step === 5 &&
+      (!/^\d+(\.\d+)?$/.test(inputValue) || parseFloat(inputValue) < 1)
+    ) {
+      handleBotMessage("Please enter a valid quantity (minimum 1).");
+      return;
+    }
+
+    handleUserMessage(inputValue);
+
+    if (step === 2) {
+      setUserResponses((prev) => ({ ...prev, name: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Please enter your email:", "input");
+        setStep(3);
+      }, 1000);
+    } else if (step === 3) {
+      setUserResponses((prev) => ({ ...prev, email: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Please enter the packaging size:", "input");
+        setStep(4);
+      }, 1000);
+    } else if (step === 4) {
+      setUserResponses((prev) => ({ ...prev, packagingSize: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Please enter the quantity in tonnes:", "input");
+        setStep(5);
+      }, 1000);
+    } else if (step === 5) {
+      setUserResponses((prev) => ({ ...prev, quantity: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Importing country:", "select", [
+          "Country 1",
+          "Country 2",
+          "Country 3",
+          "Country 4",
+        ]);
+        setStep(6);
+      }, 1000);
+    } else if (step === 6) {
+      setUserResponses((prev) => ({ ...prev, country: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Please enter the quality:", "input");
+        setStep(7);
+      }, 1000);
+    } else if (step === 7) {
+      setUserResponses((prev) => ({ ...prev, quality: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Please enter any additional information:", "input");
+        setStep(8);
+      }, 1000);
+    } else if (step === 8) {
+      setUserResponses((prev) => ({ ...prev, additionalInfo: inputValue }));
+      setTimeout(() => {
+        handleBotMessage(
+          <>
+            Confirm your details:- <br />
+            Option: {userResponses.selectedOption} <br />
+            Name: {userResponses.name} <br />
+            Email: {userResponses.email} <br />
+            Packaging Size: {userResponses.packagingSize} <br />
+            Quantity: {userResponses.quantity} <br />
+            Country: {userResponses.country} <br />
+            Quality: {userResponses.quality} <br />
+            Additional Info: {inputValue}
+          </>,
+          "button"
+        );
+        setStep(9);
+      }, 1000);
+    } else if (step === 9 && buttonValue === "yes") {
+      setUserResponses((prev) => ({ ...prev, confirmation: inputValue }));
+      setTimeout(() => {
+        handleBotMessage("Thank you! Your information has been submitted. 🎉");
+        setStep(10);
+      }, 1000);
+    } else {
+      setStep(1);
+    }
+
+    setInputValue("");
+  };
+
+  const handleYes = () => {
+    handleUserMessage("Yes");
+    setButtonValue("yes");
+
+    setTimeout(() => {
+      handleBotMessage("Thank you! Your information has been submitted. 🎉");
+      setStep(5);
+    }, 1000);
+  };
+
+  const handleNo = () => {
+    handleUserMessage("No");
+    setButtonValue("no");
+
+    setTimeout(() => {
+      handleBotMessage(
+        "Restarting the process if you want to change the details."
+      );
+
+      setTimeout(() => {
+        setMessages([
+          {
+            sender: "bot",
+            type: "select",
+            text: "Please select an option:",
+            options: ["Option 1", "Option 2", "Option 3"],
+          },
+        ]);
+        setStep(1);
+        setUserResponses({});
+      }, 1000);
+    }, 1000);
   };
 
   return (
@@ -53,11 +238,10 @@ export default function Chatbot() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          className="fixed bottom-[92px] right-20 max-w-xs bg-blue-500 text-white p-3 rounded-lg shadow-lg font-semibold 
-               flex items-center gap-2"
+          className="fixed bottom-[92px] right-20 max-w-xs bg-blue-500 text-white p-3 rounded-lg shadow-lg font-semibold flex items-center gap-2"
           style={{
-            borderTopRightRadius: "16px", // One side straight like WhatsApp
-            borderTopLeftRadius: "16px", // One side straight like WhatsApp
+            borderTopRightRadius: "16px",
+            borderTopLeftRadius: "16px",
             borderBottomLeftRadius: "16px",
             borderBottomRightRadius: "0px",
           }}
@@ -67,10 +251,9 @@ export default function Chatbot() {
       )}
 
       <div
-        className="fixed bottom-6 cursor-pointer right-6 bg-white text-white shadow-lg  rounded-full h-16 flex items-center justify-center  hover:bg-gray-200 transition-all"
+        className="fixed bottom-6 cursor-pointer right-6 bg-white text-white shadow-lg rounded-full h-16 flex items-center justify-center hover:bg-gray-200 transition-all"
         onClick={handleChatToggle}
       >
-        {/* <RobotOutlined className="text-3xl" /> */}
         <DotLottieReact
           src="https://lottie.host/54c36814-78d8-413b-bc74-ac64c70ec3b6/WaG8Co9qYB.lottie"
           loop
@@ -83,95 +266,122 @@ export default function Chatbot() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
+          className="fixed bottom-[92px] right-20 w-80 bg-white shadow-xl rounded-lg p-6 flex flex-col"
           style={{
-            borderTopRightRadius: "16px", // One side straight like WhatsApp
-            borderTopLeftRadius: "16px", // One side straight like WhatsApp
+            borderTopRightRadius: "16px",
+            borderTopLeftRadius: "16px",
             borderBottomLeftRadius: "16px",
             borderBottomRightRadius: "0px",
           }}
-          className="fixed bottom-[92px] right-20 w-80 bg-white shadow-xl rounded-lg p-6"
         >
-          {step === 1 && (
-            <div>
-              <h2 className="text-lg font-semibold text-blue-800">
-                What type of issue are you facing?
-              </h2>
-              <Select className="w-full mt-3" onChange={handleSelectChange}>
-                <Option value="Billing">Billing Issue</Option>
-                <Option value="Technical">Technical Issue</Option>
-                <Option value="General">General Inquiry</Option>
-              </Select>
-              <Button
-                className="mt-4 bg-blue-800 text-white"
-                onClick={handleNext}
+          <div
+            className="overflow-y-auto h-80 w-72 mx-auto"
+            style={{ scrollbarWidth: "none" }}
+            ref={chatRef}
+          >
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                style={{ alignItems: "end" }}
+                className={`flex text-sm ${
+                  msg.sender === "user" ? "justify-end" : "justify-start"
+                } mb-2`}
               >
-                Next
-              </Button>
-            </div>
-          )}
-
-          {step === 2 && (
-            <div>
-              <h2 className="text-lg font-semibold text-blue-800">
-                Please describe your issue:
-              </h2>
-              <Input.TextArea
-                className="w-full mt-3"
-                rows={4}
-                placeholder="Type here..."
-                onChange={(e) => handleInputChange(e, "description")}
-              />
-              <div className="flex justify-between mt-4">
-                <Button onClick={handleBack}>Back</Button>
-                <Button className="bg-blue-800 text-white" onClick={handleNext}>
-                  Next
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div>
-              <h2 className="text-lg font-semibold text-blue-800">
-                Please enter your contact information:
-              </h2>
-              <Input
-                className="w-full mt-3"
-                placeholder="Email or phone number"
-                onChange={(e) => handleInputChange(e, "contactInfo")}
-              />
-              <div className="flex justify-between mt-4">
-                <Button onClick={handleBack}>Back</Button>
-                <Button className="bg-blue-800 text-white" onClick={handleNext}>
-                  Next
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div>
-              <h2 className="text-lg font-semibold text-blue-800">
-                Confirm your responses:
-              </h2>
-              <p className="mt-3">
-                <strong>Issue Type:</strong> {responses.issueType}
-              </p>
-              <p className="mt-2">
-                <strong>Description:</strong> {responses.description}
-              </p>
-              <p className="mt-2">
-                <strong>Contact Info:</strong> {responses.contactInfo}
-              </p>
-              <div className="flex justify-between mt-4">
-                <Button onClick={handleBack}>Back</Button>
-                <Button
-                  className="bg-blue-800 text-white"
-                  onClick={handleConfirm}
+                {msg.sender === "bot" && (
+                  <RobotOutlined className="mr-2 text-blue-600 text-xl" />
+                )}
+                <div
+                  className={`p-3 rounded-lg shadow-md max-w-xs ${
+                    msg.sender === "user"
+                      ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white"
+                      : "bg-gradient-to-r from-gray-200 to-gray-400 text-black"
+                  }`}
+                  style={{
+                    borderTopRightRadius: "16px",
+                    borderTopLeftRadius: "16px",
+                    borderBottomLeftRadius:
+                      msg.sender === "user" ? "16px" : "0px",
+                    borderBottomRightRadius:
+                      msg.sender === "user" ? "0px" : "16px",
+                  }}
                 >
-                  Confirm
-                </Button>
+                  {msg.type === "select" && msg.options ? (
+                    <Select
+                      className="w-full"
+                      onChange={handleSelectChange}
+                      defaultValue={msg.text}
+                      dropdownStyle={{
+                        maxHeight: "23vh",
+                        overflow: "auto",
+                        scrollbarWidth: "none",
+                        minWidth: "13vw",
+                      }}
+                    >
+                      {step === 1 ? (
+                        <>
+                          {products.map((option, i) => (
+                            <Option key={i} value={option.name}>
+                              <Flex gap={5} align="center">
+                                <span>
+                                  <Image
+                                    preview={false}
+                                    src={option.image}
+                                    height={40}
+                                    width={50}
+                                    alt={i}
+                                    style={{ objectFit: "cover" }}
+                                  />
+                                </span>
+                                <span>{option.name}</span>
+                              </Flex>
+                            </Option>
+                          ))}
+                        </>
+                      ) : (
+                        <>
+                          {msg.options.map((option, i) => (
+                            <Option key={i} value={option}>
+                              {option}
+                            </Option>
+                          ))}
+                        </>
+                      )}
+                    </Select>
+                  ) : msg.type === "button" ? (
+                    <>
+                      <div>{msg.text}</div>
+                      <Flex justify="space-between">
+                        <Button onClick={handleYes}>Yes</Button>
+                        <Button onClick={handleNo}>No</Button>
+                      </Flex>
+                    </>
+                  ) : (
+                    msg.text
+                  )}
+                </div>
+                {msg.sender === "user" && (
+                  <UserOutlined className="ml-2 text-blue-600 text-xl" />
+                )}
               </div>
+            ))}
+          </div>
+
+          {step !== 1 && step !== 9 && step <= 9 && (
+            <div className="flex items-center gap-2 mt-4">
+              <Input
+                className="flex-1 mr-2"
+                placeholder="Type your answer..."
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+              <Button
+                color="blue"
+                variant="solid"
+                className="bg-blue-800 text-white"
+                onClick={handleSend}
+              >
+                Send
+              </Button>
             </div>
           )}
         </motion.div>
