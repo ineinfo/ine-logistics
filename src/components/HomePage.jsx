@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import Counters from "./Counters";
 import { motion } from "framer-motion";
 import Testimonials from "./Testimonials";
+import Chatbot from "./ChatBot";
 
 const HomePage = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -43,7 +44,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div style={{margin:"0px", padding:"0px"}}>
+    <div style={{ margin: "0px", padding: "0px" }}>
       {/* Flash Page with ref */}
       <FlashPage ref={flashPageRef} />
 
@@ -57,6 +58,7 @@ const HomePage = () => {
       {/* <Counters /> */}
       <Testimonials />
       <Quailty />
+      <Chatbot />
     </div>
   );
 };
