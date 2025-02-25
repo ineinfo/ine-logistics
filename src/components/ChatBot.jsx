@@ -2,13 +2,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Select, Input, Flex, Image } from "antd";
 import {
+  CheckOutlined,
+  CloseOutlined,
   MessageOutlined,
   RobotOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { products } from "@/data";
+import { countries, products } from "@/data";
 
 const { Option } = Select;
 
@@ -170,15 +172,16 @@ export default function Chatbot() {
       setTimeout(() => {
         handleBotMessage(
           <>
-            Confirm your details:- <br />
-            Option: {userResponses.selectedOption} <br />
-            Name: {userResponses.name} <br />
-            Email: {userResponses.email} <br />
-            Packaging Size: {userResponses.packagingSize} <br />
-            Quantity: {userResponses.quantity} <br />
-            Country: {userResponses.country} <br />
-            Quality: {userResponses.quality} <br />
-            Additional Info: {inputValue}
+            <strong>Confirm your details:-</strong> <br />
+            <strong>Option:</strong> {userResponses.selectedOption} <br />
+            <strong>Name:</strong> {userResponses.name} <br />
+            <strong>Email:</strong> {userResponses.email} <br />
+            <strong>Packaging Size:</strong> {userResponses.packagingSize}{" "}
+            <br />
+            <strong>Quantity:</strong> {userResponses.quantity} <br />
+            <strong>Country:</strong> {userResponses.country} <br />
+            <strong>Quality:</strong> {userResponses.quality} <br />
+            <strong>Additional Info:</strong> {inputValue}
           </>,
           "button"
         );
@@ -197,14 +200,35 @@ export default function Chatbot() {
     setInputValue("");
   };
 
-  const handleYes = () => {
+  const handleYes = async () => {
     handleUserMessage("Yes");
     setButtonValue("yes");
 
     setTimeout(() => {
       handleBotMessage("Thank you! Your information has been submitted. 🎉");
-      setStep(5);
+      setStep(10);
     }, 1000);
+
+    console.log("userResponse", userResponses);
+
+    try {
+      const response = await fetch("/api/bot", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userResponses),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        console.log("Email sent successfully!");
+      } else {
+        console.error("Failed to send email:", result.message);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const handleNo = () => {
@@ -316,8 +340,9 @@ export default function Chatbot() {
                         scrollbarWidth: "none",
                         minWidth: "13vw",
                       }}
+                      disabled={!step === 1 || !step === 6}
                     >
-                      {step === 1 ? (
+                      {step === 1 && (
                         <>
                           {products.map((option, i) => (
                             <Option key={i} value={option.name}>
@@ -337,11 +362,13 @@ export default function Chatbot() {
                             </Option>
                           ))}
                         </>
-                      ) : (
+                      )}
+
+                      {step === 6 && (
                         <>
-                          {msg.options.map((option, i) => (
-                            <Option key={i} value={option}>
-                              {option}
+                          {countries.map((option, i) => (
+                            <Option key={i} value={option.name}>
+                              {option.name}
                             </Option>
                           ))}
                         </>
@@ -350,9 +377,38 @@ export default function Chatbot() {
                   ) : msg.type === "button" ? (
                     <>
                       <div>{msg.text}</div>
-                      <Flex justify="space-between">
-                        <Button onClick={handleYes}>Yes</Button>
-                        <Button onClick={handleNo}>No</Button>
+                      <Flex
+                        justify="space-between"
+                        className="w-56"
+                        style={{ marginTop: "10px" }}
+                      >
+                        <Button
+                          type="primary"
+                          icon={<CheckOutlined />}
+                          onClick={handleYes}
+                          style={{
+                            backgroundColor: "#52c41a", // Green color
+                            borderColor: "#52c41a",
+                            borderRadius: "8px",
+                            fontWeight: "bold",
+                          }}
+                          hoverable={{ backgroundColor: "#46b015" }} // Slightly darker green on hover
+                        >
+                          Yes
+                        </Button>
+
+                        <Button
+                          type="primary"
+                          danger
+                          icon={<CloseOutlined />}
+                          onClick={handleNo}
+                          style={{
+                            borderRadius: "8px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          No
+                        </Button>
                       </Flex>
                     </>
                   ) : (
@@ -366,24 +422,28 @@ export default function Chatbot() {
             ))}
           </div>
 
-          {step !== 1 && step !== 9 && step <= 9 && (
-            <div className="flex items-center gap-2 mt-4">
-              <Input
-                className="flex-1 mr-2"
-                placeholder="Type your answer..."
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              <Button
-                color="blue"
-                variant="solid"
-                className="bg-blue-800 text-white"
-                onClick={handleSend}
-              >
-                Send
-              </Button>
-            </div>
-          )}
+          {step !== 1 &&
+            step !== 9 &&
+            step !== 10 &&
+            step !== 6 &&
+            step <= 9 && (
+              <div className="flex items-center gap-2 mt-4">
+                <Input
+                  className="flex-1 mr-2"
+                  placeholder="Type your answer..."
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                <Button
+                  color="blue"
+                  variant="solid"
+                  className="bg-blue-800 text-white"
+                  onClick={handleSend}
+                >
+                  Send
+                </Button>
+              </div>
+            )}
         </motion.div>
       )}
     </div>
